@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, car_svg with context %}
+{% block content %}
+<section class="section nf" aria-labelledby="nf-title">
+  <div class="container">
+    <div class="nf-car" aria-hidden="true">{{ car_svg("Hatchback", "#A60E0F") }}</div>
+    <p class="eyebrow">Page not found</p>
+    <h1 id="nf-title">Wrong turn!</h1>
+    <p class="lead">We couldn't find that page. Try one of these instead.</p>
+    <div class="btn-row center">
+      <a class="btn btn--primary" href="{{ page_href.home }}">{{ icon("home") }}Home</a>
+      <a class="btn btn--ghost" href="{{ page_href.cars }}">{{ icon("car") }}Cars for sale</a>
+      <a class="btn btn--ghost" href="{{ page_href.financing }}">{{ icon("calc") }}Financing</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{%- from "partials/macros.html.j2" import icon, svg_defs with context -%}
+<!DOCTYPE html>
+<html lang="{{ c.meta.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>document.documentElement.classList.add("js")</script>
+  {% include "demo_share_meta.html.j2" %}
+  {%- if c.meta.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+  <meta name="theme-color" content="{{ theme_color }}">
+  <link rel="preload" href="fonts/barlowcondensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v={{ build_id }}">
+  {%- if files.favicon %}
+  <link rel="icon" href="{{ files.favicon.src }}" sizes="48x48">
+  {%- endif %}
+  {%- if files.favicon_png %}
+  <link rel="icon" type="image/png" sizes="{{ files.favicon_png.width }}x{{ files.favicon_png.height }}" href="{{ files.favicon_png.src }}">
+  {%- endif %}
+  {%- if files.icon_192 %}
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ files.icon_192.src }}">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{ files.icon_512.src }}">
+  {%- endif %}
+  {%- if files.manifest %}
+  <link rel="manifest" href="{{ files.manifest.src }}">
+  {%- endif %}
+  {%- if files.apple_touch_icon %}
+  <link rel="apple-touch-icon" href="{{ files.apple_touch_icon.src }}">
+  {%- endif %}
+  {%- if page.id == 'home' and schema_json %}
+  <script type="application/ld+json">{{ schema_json | safe }}</script>
+  {%- endif %}
+</head>
+<body class="page-{{ page.id }}">
+<aside class="demo-banner" aria-label="Demo notice">
+  <p class="container">{{ c.meta.demo_banner }}</p>
+</aside>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="tape" aria-hidden="true"><div class="tape__strip"></div></div>
+{{ svg_defs() }}
+{% include "partials/header.html.j2" %}
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+{% include "partials/footer.html.j2" %}
+<script src="js/site.js?v={{ build_id }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, contact_buttons with context %}
+{% block content %}
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container section-head">
+    <p class="eyebrow">Repair shop · Antipolo, Rizal</p>
+    <h1 id="page-title">Car check-ups and repairs in Antipolo</h1>
+    <p class="lead">The same mechanic who checks every unit we sell can look after your car too. Call to ask or book.</p>
+    {{ contact_buttons() }}
+  </div>
+</section>
+<section class="section section--tight" aria-labelledby="svc-title">
+  <div class="container">
+    <h2 id="svc-title" class="reveal">What we can help with</h2>
+    <ul class="pillars">
+      {%- for s in c.repair_services %}
+      <li class="pillar reveal" data-tilt style="--d: {{ loop.index0 * 0.08 }}s"><span class="pillar__icon">{{ icon(s.icon) }}</span><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li>
+      {%- endfor %}
+    </ul>
+    <p class="note">Shop location: Antipolo, Rizal. {{ "[PLACEHOLDER: repair shop address, hours and service list]" | ph }}</p>
+  </div>
+</section>
+<section class="section cta-band" aria-labelledby="rep-cta"><div class="container reveal">
+  <h2 id="rep-cta">Car acting up?</h2><p>Call or message us and describe the problem.</p>{{ contact_buttons("center") }}
+</div></section>
+{% endblock %}

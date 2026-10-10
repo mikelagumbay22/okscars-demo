@@ -1,0 +1,499 @@
+{
+  "_readme": "ALL business content for the Oks Cars Auto Financing demo (Business package sample, forked from Sadaf). Facts ONLY from Chiefy's brief and the refs in /workspace/refs/okscars (Facebook page screenshots). Never publish the e-mail, the owner's name, bank names, interest rates presented as theirs, or invented reviews.",
+  "meta": {
+    "lang": "en-PH",
+    "noindex": true,
+    "show_placeholder_badges": true,
+    "schema_include_rating": false,
+    "schema_image": "schema_logo",
+    "demo_banner": "Business package demo concept — not an official website of Oks Cars Auto Financing, and not affiliated with or approved by the business.",
+    "copyright_line": "Demo concept, not affiliated with or approved by Oks Cars Auto Financing.",
+    "image_badge": "Illustrative image, not a photo of Oks Cars' units",
+    "_image_badge_note": "One photo (key handover) is AI-generated with Canva (Oct 9, 2026). Canva's quota ran out for the rest, so the cars, hero and repair art are hand-made SVG illustrations (no credits spent). Never call them 'stock'. The logo is the business's own and is not badged.",
+    "theme_color": "#050404",
+    "site_url": "https://mikelagumbay22.github.io/okscars-demo/",
+    "share": {
+      "suffix": "(demo concept)",
+      "site_name_template": "{name} {suffix}",
+      "description_template": "Demo concept website for {name}, {summary} — not the official site. {page_summary}",
+      "summary": "a car dealership in Antipolo, Rizal",
+      "max_description": 160,
+      "title_suffix_in_tab": true
+    },
+    "social_image": {
+      "source_image": "og_source",
+      "output": "og-image.jpg",
+      "width": 1200,
+      "height": 630,
+      "alt": "Oks Cars Auto Financing logo with the tagline Where approval stories are made",
+      "label": "Demo concept, not the official site",
+      "label_bg": "#050404",
+      "label_fg": "#DBA923",
+      "label_size": 52,
+      "label_band_height": 112,
+      "badge_size": 28,
+      "business_type": "car dealer",
+      "font": "../work/fonts/barlow-600-latin.ttf"
+    },
+    "image_max_kb": 150
+  },
+  "export": {
+    "banned_words": [
+      "Quill",
+      "Canvas",
+      "Chiefy",
+      "Launch",
+      "Pixel",
+      "Grok",
+      "Oliver",
+      "Kenneth",
+      "Santos",
+      "Dennis",
+      "kennyboooo"
+    ],
+    "banned_patterns": [
+      "mailto",
+      "[\\w.+-]+@[\\w-]+\\.[a-z]{2,}",
+      "yahoo",
+      "gmail",
+      "aggregateRating",
+      "\\bstock\\b",
+      "priceRange",
+      "paymentAccepted",
+      "\"review\"",
+      "\"email\"",
+      "\"url\"",
+      "\\bBDO\\b",
+      "\\bBPI\\b",
+      "metrobank",
+      "security bank",
+      "\\bPNB\\b",
+      "\\bRCBC\\b",
+      "china ?bank",
+      "union ?bank",
+      "eastwest",
+      "\\bPSBank\\b",
+      "maybank",
+      "landbank",
+      "\\bAUB\\b",
+      "guarantee",
+      "warrant",
+      "0% interest",
+      "zero interest",
+      "\\binterest rate of\\b",
+      "lowest rate",
+      "\\bcertif",
+      "since (19|20)\\d\\d",
+      "award",
+      "best in "
+    ],
+    "never_publish": [],
+    "never_publish_globs": [],
+    "never_publish_dirs": [],
+    "required_text": [
+      "@demo_banner",
+      "Demo concept, not affiliated with or approved by Oks Cars Auto Financing."
+    ],
+    "placeholder_banned_words": [
+      "yahoo",
+      "approval from",
+      "builder",
+      "JSON",
+      "Chiefy",
+      "owner"
+    ],
+    "schema_forbidden_keys": [
+      "aggregateRating",
+      "review",
+      "email",
+      "url",
+      "priceRange",
+      "paymentAccepted",
+      "currenciesAccepted",
+      "makesOffer",
+      "amenityFeature",
+      "hasMap"
+    ]
+  },
+  "business": {
+    "name": "Oks Cars Auto Financing",
+    "short_name": "Oks Cars",
+    "schema_type": [
+      "AutoDealer"
+    ],
+    "phone_display": "+63 945 774 3386",
+    "phone_e164": "+639457743386",
+    "phone_schema": "+63-945-774-3386",
+    "address": {
+      "street": "",
+      "unit": "",
+      "city": "Antipolo",
+      "region": "Rizal",
+      "postal_code": "",
+      "country": "PH",
+      "full": "Antipolo, Rizal"
+    },
+    "same_as": [
+      "https://www.facebook.com/profile.php?id=100063768174483"
+    ],
+    "facebook_url": "https://www.facebook.com/profile.php?id=100063768174483",
+    "facebook_followers": "287K",
+    "map_query": "Antipolo, Rizal, Philippines",
+    "_messenger_note": "No Messenger username is visible in the refs (the Messenger row shows only the page name), so the Messenger button links to the Facebook page.",
+    "_address_note": "Refs show only 'Antipolo, Philippines', so no street address and no map embed."
+  },
+  "brand_files": {
+    "logo": "logo-96.png",
+    "logo_webp": "logo-96.webp",
+    "logo_192": "logo-192.png",
+    "logo_192_webp": "logo-192.webp",
+    "logo_512": "logo-512.png",
+    "logo_512_webp": "logo-512.webp",
+    "favicon": "favicon.ico",
+    "favicon_png": "favicon-32.png",
+    "apple_touch_icon": "apple-touch-icon.png",
+    "icon_192": "icon-192.png",
+    "icon_512": "icon-512.png",
+    "manifest": "site.webmanifest",
+    "schema_logo": "logo-512.png",
+    "_note": "The business's real logo (Facebook profile image, refs/okscars/logo-original.jpg), used as is with a circular crop. Not badged: it is their own logo."
+  },
+  "pages": [
+    {
+      "id": "home",
+      "file": "index.html",
+      "template": "home.html.j2",
+      "nav_label": "Home",
+      "title": "Oks Cars Auto Financing | Cars & Car Financing in Antipolo, Rizal",
+      "share_description": "Demo concept site: quality brand-new and second-hand cars with fast financing through 10+ bank partners, in Antipolo, Rizal. Not the official Oks Cars site."
+    },
+    {
+      "id": "cars",
+      "file": "cars-for-sale.html",
+      "template": "cars.html.j2",
+      "nav_label": "Cars for sale",
+      "title": "Cars for Sale in Antipolo, Rizal | Oks Cars",
+      "share_description": "Demo concept site: sample brand-new and second-hand car listings from Oks Cars Auto Financing, Antipolo, Rizal. Every unit is checked by their mechanic."
+    },
+    {
+      "id": "financing",
+      "file": "financing.html",
+      "template": "financing.html.j2",
+      "nav_label": "Financing",
+      "title": "Car Financing & Monthly Payment Calculator | Oks Cars",
+      "share_description": "Demo concept site: car financing through 10+ bank partners, low down payment promos and a ₱ monthly estimate calculator. Oks Cars, Antipolo, Rizal."
+    },
+    {
+      "id": "sell",
+      "file": "sell-your-car.html",
+      "template": "sell.html.j2",
+      "nav_label": "Sell your car",
+      "title": "Sell Your Car in Antipolo, Rizal | Oks Cars",
+      "share_description": "Demo concept site: sell your car to Oks Cars Auto Financing in Antipolo, Rizal. Send your car's details and photos. Not the official site."
+    },
+    {
+      "id": "repair",
+      "file": "repair-shop.html",
+      "template": "repair.html.j2",
+      "nav_label": "Repair shop",
+      "title": "Car Repair Shop in Antipolo, Rizal | Oks Cars",
+      "share_description": "Demo concept site: car check-ups and repairs at the Oks Cars repair shop in Antipolo, Rizal. Call to book. Not the official site."
+    },
+    {
+      "id": "about",
+      "file": "about.html",
+      "template": "about.html.j2",
+      "nav_label": "About & reviews",
+      "title": "About Oks Cars & Client Stories | Antipolo, Rizal",
+      "share_description": "Demo concept site: about Oks Cars Auto Financing in Antipolo, Rizal. Where approval stories are made, with 1000+ happy clients."
+    },
+    {
+      "id": "contact",
+      "file": "contact.html",
+      "template": "contact.html.j2",
+      "nav_label": "Contact",
+      "title": "Contact Oks Cars | Call or Message Us | Antipolo, Rizal",
+      "share_description": "Demo concept site: call +63 945 774 3386 or message Oks Cars Auto Financing on Facebook. Antipolo, Rizal. Not the official site."
+    },
+    {
+      "id": "notfound",
+      "file": "404.html",
+      "template": "404.html.j2",
+      "title": "Page not found | Oks Cars",
+      "share_summary": "Page not found."
+    }
+  ],
+  "header_cta": {
+    "label": "Call now",
+    "href": "tel:+639457743386",
+    "icon": "phone"
+  },
+  "hours": [
+    {
+      "day": "Monday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Tuesday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Wednesday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Thursday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Friday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Saturday",
+      "tbc": true,
+      "display": "To confirm"
+    },
+    {
+      "day": "Sunday",
+      "tbc": true,
+      "display": "To confirm"
+    }
+  ],
+  "hours_note": "Facebook lists the page as “Always open”. [PLACEHOLDER: showroom and repair shop hours]",
+  "images": {
+    "handover": {
+      "file": "handover.jpg",
+      "illustrative": true,
+      "focus": "55% 45%",
+      "alt": "Two hands passing a car key in front of a red car"
+    },
+    "og_source": {
+      "file": "og-source.jpg",
+      "illustrative": false,
+      "focus": "50% 50%",
+      "alt": "Oks Cars Auto Financing logo with the tagline Where approval stories are made"
+    }
+  },
+  "promo": {
+    "text": "Low down payment promo: ₱9K or ₱19K DP on selected units",
+    "note": "Promo to confirm · Terms apply",
+    "ph": "[PLACEHOLDER: promo details and units]"
+  },
+  "pillars": [
+    {
+      "icon": "car",
+      "title": "Brand-new & pre-owned units",
+      "text": "Quality brand-new and second-hand cars. Sulit, and almost brand new."
+    },
+    {
+      "icon": "wrench",
+      "title": "Checked by our mechanic",
+      "text": "Every unit goes through our mechanic before you take it home, so it's in good running order. Walang hassle."
+    },
+    {
+      "icon": "bolt",
+      "title": "Fast & easy approval",
+      "text": "We help with your financing application from start to release."
+    },
+    {
+      "icon": "bank",
+      "title": "10+ bank partners",
+      "text": "Nationwide approval through 10+ bank partners, with low down payment options."
+    }
+  ],
+  "listings": [
+    {
+      "id": "almera",
+      "year": 2023,
+      "name": "Nissan Almera 1.0 Turbo AT",
+      "condition": "Second-hand",
+      "body": "Sedan",
+      "trans": "Automatic",
+      "fuel": "Gasoline",
+      "color": "#1C1213",
+      "extra": "360° camera"
+    },
+    {
+      "id": "vios",
+      "year": 2022,
+      "name": "Toyota Vios 1.3 XLE CVT",
+      "condition": "Second-hand",
+      "body": "Sedan",
+      "trans": "Automatic",
+      "fuel": "Gasoline",
+      "color": "#A60E0F"
+    },
+    {
+      "id": "wigo",
+      "year": 2024,
+      "name": "Toyota Wigo 1.0 G AT",
+      "condition": "Brand-new",
+      "body": "Hatchback",
+      "trans": "Automatic",
+      "fuel": "Gasoline",
+      "color": "#DCD9D5"
+    },
+    {
+      "id": "xpander",
+      "year": 2021,
+      "name": "Mitsubishi Xpander GLS AT",
+      "condition": "Second-hand",
+      "body": "MPV",
+      "trans": "Automatic",
+      "fuel": "Gasoline",
+      "color": "#838080"
+    },
+    {
+      "id": "fortuner",
+      "year": 2023,
+      "name": "Toyota Fortuner 2.4 G 4x2 AT",
+      "condition": "Second-hand",
+      "body": "SUV",
+      "trans": "Automatic",
+      "fuel": "Diesel",
+      "color": "#3B322D"
+    },
+    {
+      "id": "ranger",
+      "year": 2020,
+      "name": "Ford Ranger XLT 2.2 4x2 AT",
+      "condition": "Second-hand",
+      "body": "Pickup",
+      "trans": "Automatic",
+      "fuel": "Diesel",
+      "color": "#E05C54"
+    }
+  ],
+  "listing_note": "Sample listings for this demo only, not Oks Cars' current inventory. Ask us for available units and prices.",
+  "fin_steps": [
+    {
+      "title": "Choose your unit",
+      "text": "Pick a car from our lot or tell us what you're looking for."
+    },
+    {
+      "title": "Send your details",
+      "text": "Call or message us. We'll tell you what the bank needs from you."
+    },
+    {
+      "title": "We match you with a bank",
+      "text": "We work with 10+ bank partners for nationwide approval."
+    },
+    {
+      "title": "Approved! Release na",
+      "text": "Once approved, we prepare your unit for release."
+    }
+  ],
+  "calc": {
+    "price": 800000,
+    "dp_pct": 20,
+    "term": 48,
+    "rate": 10,
+    "terms": [
+      12,
+      18,
+      24,
+      36,
+      48,
+      60
+    ],
+    "rate_note": "Example rate only, not an Oks Cars or bank rate. Enter the annual add-on rate your bank quotes.",
+    "disclaimer": "Estimate only. Actual terms depend on the bank."
+  },
+  "sell_steps": [
+    {
+      "title": "Send your car's details",
+      "text": "Make, model, year, mileage and a few photos."
+    },
+    {
+      "title": "We check the unit",
+      "text": "Our mechanic looks the car over."
+    },
+    {
+      "title": "Get our offer",
+      "text": "We'll talk you through the offer, no pressure."
+    },
+    {
+      "title": "Close the deal",
+      "text": "Agree on the terms and we take it from there."
+    }
+  ],
+  "repair_services": [
+    {
+      "icon": "gauge",
+      "title": "Check-ups",
+      "text": "Have your car looked over by our mechanic."
+    },
+    {
+      "icon": "wrench",
+      "title": "Repairs",
+      "text": "Tell us what's wrong and we'll take a look."
+    },
+    {
+      "icon": "shield",
+      "title": "Pre-sale checks",
+      "text": "Every unit we sell goes through our mechanic first."
+    },
+    {
+      "icon": "message",
+      "title": "Other work",
+      "text": "Not sure if we can help? Call or message us and ask."
+    }
+  ],
+  "about": {
+    "lead": "Oks Cars Auto Financing sells quality, affordable second-hand cars, plus brand-new units, in Antipolo, Rizal.",
+    "p1": "Every unit passes through our mechanic before you take it home, so you know it's in good running order.",
+    "p2": "Clients trust us for fast approval, and for cars that feel almost brand new. With 10+ bank partners, we help buyers get approved nationwide."
+  },
+  "reviews_ph": "[PLACEHOLDER: client reviews, word for word, with permission]",
+  "socials": [
+    {
+      "name": "Facebook",
+      "icon": "facebook",
+      "href": "https://www.facebook.com/profile.php?id=100063768174483",
+      "note": "287K followers"
+    }
+  ],
+  "package": {
+    "label": "Demo only",
+    "heading": "What the Business package includes",
+    "intro": "This sample shows the extra features in the Business package. This panel is for the demo and would not appear on a live site.",
+    "domain_line": "Your own web address, e.g. okscars.ph or okscars.com",
+    "domain_note": "Example addresses only. Not registered or owned by the business.",
+    "features": [
+      {
+        "n": "1",
+        "text": "A custom black, gold and red design with car-themed animation"
+      },
+      {
+        "n": "2",
+        "text": "Local-search pages for sales, financing, selling and repairs in Antipolo, Rizal"
+      },
+      {
+        "n": "3",
+        "text": "Inquiry, financing and sell-your-car forms (disabled in this demo)"
+      },
+      {
+        "n": "4",
+        "text": "A ₱ monthly payment calculator"
+      },
+      {
+        "n": "5",
+        "text": "Filterable car listings"
+      },
+      {
+        "n": "6",
+        "text": "Call, Messenger and social links on every page"
+      },
+      {
+        "n": "7",
+        "text": "Your own web address, e.g. okscars.ph or okscars.com"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{%- from "partials/macros.html.j2" import icon -%}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ page_href.home }}"{% if page.id == 'home' %} aria-current="page"{% endif %}>
+      <picture><source type="image/webp" srcset="{{ files.logo_webp.src }} 96w, {{ files.logo_192_webp.src }} 192w" sizes="56px"><img class="brand__logo" src="{{ files.logo.src }}" srcset="{{ files.logo.src }} 96w, {{ files.logo_192.src }} 192w" sizes="56px" alt="{{ b.name }}, home" width="56" height="56"></picture><span class="brand__name" aria-hidden="true"><b>Oks Cars</b><small>Auto Financing</small></span>
+    </a>
+    <nav class="site-nav desktop-nav" aria-label="Main">
+      <ul>
+        {%- for p in nav %}
+        <li><a href="{{ p.file }}"{% if p.id == page.id %} aria-current="page"{% endif %}>{{ p.nav_label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--primary btn--sm header-cta" href="{{ c.header_cta.href }}">{{ icon(c.header_cta.icon) }}{{ c.header_cta.label }}</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__label">Menu</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Mobile">
+      <p class="mobile-nav__brand"><img src="{{ files.logo.src }}" alt="" width="40" height="40" loading="lazy" decoding="async"><span>Where approval stories are made</span></p>
+      <ul>
+        {%- for p in nav %}
+        <li style="--i:{{ loop.index0 }}"><a href="{{ p.file }}"{% if p.id == page.id %} aria-current="page"{% endif %}>{{ p.nav_label }}</a></li>
+        {%- endfor %}
+        <li style="--i:{{ nav | length }}"><a class="mobile-nav__cta" href="{{ c.header_cta.href }}">{{ icon(c.header_cta.icon) }}{{ c.header_cta.label }}</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

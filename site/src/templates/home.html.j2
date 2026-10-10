@@ -1,0 +1,99 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, media, hero_scene, contact_buttons, listing_card, steps_list, road_divider, package_panel with context %}
+{% block content %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Antipolo, Rizal · Car dealership & auto financing</p>
+      <h1 id="hero-title"><span class="gold-text">Where approval stories</span> are made</h1>
+      <p class="lead">Quality brand-new and second-hand cars, checked by our mechanic, with fast financing approval through 10+ bank partners. Sulit na, walang hassle pa.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary btn--lg" href="{{ page_href.financing }}">{{ icon("bolt") }}Tara, apply na!</a>
+        <a class="btn btn--ghost btn--lg" href="{{ page_href.cars }}">{{ icon("car") }}See cars for sale</a>
+      </div>
+      <ul class="stats">
+        <li><span class="stats__num" data-count="1000" data-suffix="+">1000+</span><span class="stats__lbl">happy clients</span></li>
+        <li><span class="stats__num" data-count="10" data-suffix="+">10+</span><span class="stats__lbl">bank partners</span></li>
+        <li><span class="stats__num">{{ b.facebook_followers }}</span><span class="stats__lbl">followers on Facebook</span></li>
+      </ul>
+    </div>
+    <div class="hero__art">{{ hero_scene() }}</div>
+  </div>
+</section>
+
+<section class="promo" aria-label="Down payment promo">
+  <div class="container promo__inner">
+    <p><strong>{{ c.promo.text }}</strong> <span class="promo__note">{{ c.promo.note }}</span> {{ c.promo.ph | ph }}</p>
+    <a class="btn btn--dark btn--sm" href="{{ page_href.financing }}#calc">{{ icon("calc") }}Estimate your monthly</a>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why-title">
+  <div class="container">
+    <div class="section-head reveal"><p class="eyebrow">Why Oks Cars</p><h2 id="why-title">Sulit cars, fast approval</h2></div>
+    <ul class="pillars">
+      {%- for p in c.pillars %}
+      <li class="pillar reveal" data-tilt style="--d: {{ loop.index0 * 0.08 }}s"><span class="pillar__icon">{{ icon(p.icon) }}</span><h3>{{ p.title }}</h3><p>{{ p.text }}</p></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{{ road_divider() }}
+
+<section class="section" aria-labelledby="cars-title">
+  <div class="container">
+    <div class="section-head section-head--row reveal">
+      <div><p class="eyebrow">Cars for sale</p><h2 id="cars-title">A few sample units</h2></div>
+      <a class="text-link" href="{{ page_href.cars }}"><span>See all sample listings</span>{{ icon("arrow") }}</a>
+    </div>
+    <div class="listings">{% for l in c.listings[:3] %}{{ listing_card(l, loop.index0) }}{% endfor %}</div>
+    <p class="note">{{ c.listing_note }}</p>
+  </div>
+</section>
+
+<section class="section section--panel" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head reveal"><p class="eyebrow">Financing</p><h2 id="how-title">From inquiry to release</h2></div>
+    {{ steps_list(c.fin_steps) }}
+    <div class="btn-row center"><a class="btn btn--gold" href="{{ page_href.financing }}#calc">{{ icon("calc") }}Try the monthly calculator</a></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="clients-title">
+  <div class="container split">
+    <div class="reveal reveal-l"><div class="photo-frame">{{ media(c.images.handover, "(min-width: 900px) 520px, 92vw", "media--wide") }}</div></div>
+    <div class="reveal reveal-r">
+      <p class="eyebrow">Client stories</p>
+      <h2 id="clients-title"><span class="big-count" data-count="1000" data-suffix="+">1000+</span> happy clients, and counting!</h2>
+      <p>{{ c.about.p2 }}</p>
+      <p class="note">{{ c.reviews_ph | ph }}</p>
+      <a class="text-link" href="{{ page_href.about }}"><span>About us and client stories</span>{{ icon("arrow") }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--panel" aria-labelledby="repair-title">
+  <div class="container split">
+    <div class="reveal reveal-l">
+      <p class="eyebrow">Repair shop</p>
+      <h2 id="repair-title">We fix cars too</h2>
+      <p>Check-ups and repairs at our own shop, by the same mechanic who checks every unit we sell.</p>
+      <a class="btn btn--ghost" href="{{ page_href.repair }}">{{ icon("wrench") }}Repair shop</a>
+    </div>
+    <div class="reveal reveal-r repair-art" aria-hidden="true">
+      <span class="repair-art__wrench">{{ icon("wrench") }}</span>
+      <span class="repair-art__gauge">{{ icon("gauge") }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band" aria-labelledby="cta-title">
+  <div class="container reveal">
+    <h2 id="cta-title">Tara, apply na!</h2>
+    <p>Call or message us and we'll help you find the right unit and bank partner.</p>
+    {{ contact_buttons("center") }}
+  </div>
+</section>
+
+{{ package_panel() }}
+{% endblock %}

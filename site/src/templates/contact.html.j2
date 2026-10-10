@@ -1,0 +1,45 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, contact_buttons, socials_row, disabled_note with context %}
+{% block content %}
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container section-head">
+    <p class="eyebrow">Contact</p>
+    <h1 id="page-title">Call or message us</h1>
+    <p class="lead">The quickest way to reach Oks Cars is a call or a Facebook message.</p>
+  </div>
+</section>
+<section class="section section--tight" aria-label="Ways to reach us">
+  <div class="container contact-grid">
+    <div class="contact-card reveal">
+      {{ contact_buttons("stack") }}
+      <h2 class="h3">Follow us on Facebook</h2>
+      {{ socials_row() }}
+    </div>
+    <div class="contact-card reveal" style="--d:.1s">
+      <h2 class="h3">{{ icon("pin") }} Location</h2>
+      <p class="contact-city">{{ b.address.full }}, Philippines</p>
+      <p class="note">{{ "[PLACEHOLDER: showroom address and map]" | ph }}</p>
+      <h2 class="h3">{{ icon("clock") }} Hours</h2>
+      <p>{{ c.hours_note | ph }}</p>
+    </div>
+  </div>
+</section>
+<section class="section section--panel" id="inquiry" aria-labelledby="inq-title">
+  <div class="container quote-grid">
+    <div class="reveal reveal-l"><h2 id="inq-title">Send an inquiry</h2>{{ disabled_note("inq-note") }}</div>
+    <form class="demo-form reveal reveal-r" aria-labelledby="inq-title" aria-describedby="inq-note" onsubmit="return false">
+      <fieldset disabled>
+        <legend class="visually-hidden">Inquiry (disabled in this demo)</legend>
+        <div class="f-row">
+          <div><label for="i-name">Name</label><input id="i-name" type="text" autocomplete="name"></div>
+          <div><label for="i-mobile">Mobile number</label><input id="i-mobile" type="tel" autocomplete="tel"></div>
+        </div>
+        <label for="i-topic">Topic</label><select id="i-topic"><option>Buying a car</option><option>Financing</option><option>Selling my car</option><option>Repair shop</option><option>Other</option></select>
+        <label for="i-msg">Message</label><textarea id="i-msg" rows="4"></textarea>
+        <button class="btn btn--primary" type="submit">{{ icon("message") }}Send</button>
+      </fieldset>
+      <p class="form-note">Disabled in this demo: nothing is sent.</p>
+    </form>
+  </div>
+</section>
+{% endblock %}

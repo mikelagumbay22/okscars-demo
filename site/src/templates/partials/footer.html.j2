@@ -1,0 +1,37 @@
+{%- from "partials/macros.html.j2" import icon, socials_row, road_divider with context -%}
+{{ road_divider() }}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="{{ page_href.home }}"><picture><source type="image/webp" srcset="{{ files.logo_webp.src }} 96w, {{ files.logo_192_webp.src }} 192w" sizes="72px"><img class="brand__logo" src="{{ files.logo.src }}" srcset="{{ files.logo.src }} 96w, {{ files.logo_192.src }} 192w" sizes="72px" alt="{{ b.name }}, home" width="72" height="72" loading="lazy" decoding="async"></picture><span class="brand__name" aria-hidden="true"><b>Oks Cars</b><small>Auto Financing</small></span></a>
+        <p class="tagline">Where approval stories are made.</p>
+        {{ socials_row() }}
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="tel:{{ b.phone_e164 }}">{{ b.phone_display }}</a></li>
+          <li><a href="{{ b.facebook_url }}" target="_blank" rel="noopener">Message us on Facebook<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li>{{ b.address.full }}, Philippines</li>
+          <li>{{ c.hours_note | ph }}</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul class="footer-nav">
+          {%- for p in nav %}<li><a href="{{ p.file }}"{% if p.id == page.id %} aria-current="page"{% endif %}>{{ p.nav_label }}</a></li>{%- endfor %}
+        </ul>
+      </div>
+    </div>
+    <aside class="demo-features" aria-label="Business package features shown on this demo">
+      <p><strong>Demo only · Business package features on this site:</strong>{%- for f in c.package.features %} <span>{{ f.n }}. {{ f.text }}{% if not loop.last %};{% else %}.{% endif %}</span>{% endfor %}</p>
+    </aside>
+    <div class="footer-bottom"><p class="footer-legal">{{ c.meta.copyright_line }}</p></div>
+  </div>
+</footer>
+<nav class="mobile-callbar" aria-label="Call, message and apply">
+  <a class="btn btn--primary" href="tel:{{ b.phone_e164 }}" aria-label="Call {{ b.phone_display }}">{{ icon("phone") }}Call</a>
+  <a class="btn btn--gold" href="{{ b.facebook_url }}" target="_blank" rel="noopener" aria-label="Message us on Facebook (opens in a new tab)">{{ icon("messenger") }}Message</a>
+  <a class="btn btn--ghost" href="{{ page_href.financing }}#calc">{{ icon("calc") }}Estimate</a>
+</nav>

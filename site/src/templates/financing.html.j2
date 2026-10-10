@@ -1,0 +1,86 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, steps_list, disabled_note, contact_buttons with context %}
+{% block content %}
+{%- set k = c.calc %}
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container section-head">
+    <p class="eyebrow">Car financing · 10+ bank partners</p>
+    <h1 id="page-title">Fast car financing approval, nationwide</h1>
+    <p class="lead">We help you apply through 10+ bank partners, with low down payment options. {{ c.promo.text }} <span class="promo__note">({{ c.promo.note }})</span>.</p>
+  </div>
+</section>
+<section class="section section--tight" aria-labelledby="steps-title">
+  <div class="container"><h2 id="steps-title" class="reveal">How it works</h2>{{ steps_list(c.fin_steps) }}</div>
+</section>
+
+<section class="section section--panel" id="calc" aria-labelledby="calc-title">
+  <div class="container calc-grid">
+    <div class="reveal reveal-l">
+      <p class="eyebrow">Monthly estimate</p>
+      <h2 id="calc-title">₱ monthly payment calculator</h2>
+      <p>Play with the numbers to see a rough monthly amortization. Uses a simple add-on rate: (amount financed + amount financed × rate × years) ÷ months.</p>
+      <form class="calc" data-calc onsubmit="return false" aria-describedby="calc-disclaimer">
+        <label for="c-price">Car price (₱)</label>
+        <input id="c-price" type="number" inputmode="numeric" min="50000" step="1000" value="{{ k.price }}">
+        <fieldset class="dp">
+          <legend>Down payment</legend>
+          <div class="seg" role="radiogroup" aria-label="Down payment as">
+            <label><input type="radio" name="dpmode" value="pct" checked> %</label>
+            <label><input type="radio" name="dpmode" value="php"> ₱</label>
+          </div>
+          <label for="c-dp" class="visually-hidden">Down payment amount</label>
+          <input id="c-dp" type="number" inputmode="decimal" min="0" step="any" value="{{ k.dp_pct }}" aria-describedby="c-dp-hint">
+          <p class="hint" id="c-dp-hint" data-dp-hint>Percent of the car price</p>
+        </fieldset>
+        <label for="c-term">Term</label>
+        <select id="c-term">{% for t in k.terms %}<option value="{{ t }}"{% if t == k.term %} selected{% endif %}>{{ t }} months</option>{% endfor %}</select>
+        <label for="c-rate">Annual add-on rate (%)</label>
+        <input id="c-rate" type="number" inputmode="decimal" min="0" max="60" step="0.1" value="{{ k.rate }}" aria-describedby="c-rate-hint">
+        <p class="hint hint--warn" id="c-rate-hint"><mark class="ph-inline">Example</mark> {{ k.rate_note }}</p>
+      </form>
+    </div>
+    <div class="calc-out reveal reveal-r" data-tilt>
+      <p class="calc-out__lbl">Estimated monthly</p>
+      <p class="calc-out__num" aria-hidden="true"><span data-out-monthly>₱0</span><small>/mo</small></p>
+      <dl class="calc-out__rows">
+        <div><dt>Down payment</dt><dd data-out-dp>₱0</dd></div>
+        <div><dt>Amount financed</dt><dd data-out-fin>₱0</dd></div>
+        <div><dt>Total add-on interest</dt><dd data-out-int>₱0</dd></div>
+      </dl>
+      <p class="visually-hidden" role="status" aria-live="polite" data-out-live></p>
+      <p class="calc-out__disc" id="calc-disclaimer">{{ k.disclaimer }}</p>
+      <div class="stamp stamp--calc" aria-hidden="true"><span>Approved?</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="apply" aria-labelledby="apply-title">
+  <div class="container quote-grid">
+    <div class="reveal reveal-l">
+      <p class="eyebrow">Apply or inquire</p>
+      <h2 id="apply-title">Tara, apply na!</h2>
+      <p>Send your details and we'll get back to you about your application.</p>
+      {{ disabled_note("apply-note") }}
+      {{ contact_buttons() }}
+    </div>
+    <form class="demo-form reveal reveal-r" aria-labelledby="apply-title" aria-describedby="apply-note" onsubmit="return false">
+      <fieldset disabled>
+        <legend class="visually-hidden">Financing inquiry (disabled in this demo)</legend>
+        <div class="f-row">
+          <div><label for="a-name">Name</label><input id="a-name" type="text" autocomplete="name"></div>
+          <div><label for="a-mobile">Mobile number</label><input id="a-mobile" type="tel" autocomplete="tel" placeholder="09XX XXX XXXX"></div>
+        </div>
+        <div class="f-row">
+          <div><label for="a-car">Car of interest</label><select id="a-car"><option value="">Choose a unit</option>{% for l in c.listings %}<option>{{ l.year }} {{ l.name }} (sample)</option>{% endfor %}<option>Other / not sure yet</option></select></div>
+          <div><label for="a-dp">Down payment you can afford (₱)</label><input id="a-dp" type="number" inputmode="numeric" min="0" step="1000"></div>
+        </div>
+        <label for="a-emp">Employment type</label>
+        <select id="a-emp"><option value="">Choose one</option><option>Employed</option><option>Self-employed / business owner</option><option>OFW</option><option>Other</option></select>
+        <label for="a-msg">Message</label><textarea id="a-msg" rows="4"></textarea>
+        <button class="btn btn--primary" type="submit">{{ icon("bolt") }}Send inquiry</button>
+      </fieldset>
+      <p class="form-note">Disabled in this demo: nothing is sent.</p>
+    </form>
+  </div>
+</section>
+{% endblock %}

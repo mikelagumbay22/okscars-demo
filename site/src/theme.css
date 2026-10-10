@@ -1,0 +1,22 @@
+/* THEME: Oks Cars REAL brand palette, sampled (k-means) from refs/okscars/logo-original.jpg and 01_header.png. See ../../NOTES.md.
+   Contrast: Text #F4F4F4 on #050404 18.6 · Muted #CACAC9 on #1C1213 11.2 · Gold #DBA923 on #050404 9.5 (on #1C1213 8.5) ·
+   Red tint #E05C54 on #050404 5.7 · White on Red #A60E0F 7.8 · #050404 on Gold 9.5. Red #A60E0F is fills only (2.6 as text). */
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/barlow-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/barlow-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/barlowcondensed-700-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Fallback"; font-weight: 100 549; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo"); size-adjust: 96.2%; ascent-override: 104%; descent-override: 20.8%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback"; font-weight: 550 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 91.6%; ascent-override: 109.2%; descent-override: 21.8%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback Roboto"; font-weight: 100 549; src: local("Roboto"), local("Roboto-Regular"); size-adjust: 97%; ascent-override: 103.1%; descent-override: 20.6%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback Roboto"; font-weight: 550 900; src: local("Roboto Bold"), local("Roboto-Bold"); size-adjust: 97.5%; ascent-override: 102.6%; descent-override: 20.5%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Condensed Fallback"; font-weight: 100 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 69.5%; ascent-override: 143.9%; descent-override: 28.8%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Condensed Fallback Roboto"; font-weight: 100 900; src: local("Roboto Bold"), local("Roboto-Bold"); size-adjust: 75.4%; ascent-override: 132.6%; descent-override: 26.5%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 800; font-display: swap; src: url("../fonts/barlowcondensed-800-latin.woff2") format("woff2"); }
+:root {
+  --ok-black: #050404; --ok-ink: #1A1313; --ok-surface: #1C1213; --ok-surface-2: #2A1F1C; --ok-line: #3B322D;
+  --ok-text: #F4F4F4; --ok-muted: #CACAC9; --ok-yellow: #DBA923; --ok-gold: #D09F51; --ok-gold-lt: #E9CC8E; --ok-gold-dk: #9C6E2F; --ok-brown: #3D2613;
+  --ok-red: #A60E0F; --ok-red-hi: #E05C54; --ok-red-dk: #8A0B0C; --ok-coral: #E05C54;
+  --font-display: "Barlow Condensed", "Barlow Condensed Fallback", "Barlow Condensed Fallback Roboto", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Barlow Fallback", "Barlow Fallback Roboto", system-ui, sans-serif;
+  --container: 76rem; --radius: 14px; --radius-lg: 22px;
+  --ease-out: cubic-bezier(.22, 1, .36, 1); --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}

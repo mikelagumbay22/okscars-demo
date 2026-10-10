@@ -1,0 +1,171 @@
+{#- Shared macros for the Oks Cars demo: icons, framed media, car illustrations, hero scene, stamp, forms, demo package panel. -#}
+{%- macro svg(paths, sw="1.8") -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ sw }}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{{ paths | safe }}</svg>{%- endmacro -%}
+
+{%- macro icon(name) -%}
+{%- if name == "phone" -%}{{ svg('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>') }}
+{%- elif name == "pin" -%}{{ svg('<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>') }}
+{%- elif name == "clock" -%}{{ svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>') }}
+{%- elif name == "cup" -%}{{ svg('<path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 2.5c-.8 1 .8 2 0 3M12 2.5c-.8 1 .8 2 0 3"/>') }}
+{%- elif name == "mug" -%}{{ svg('<path d="M5 6h11v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z"/><path d="M16 9h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 10v6"/>') }}
+{%- elif name == "pot" -%}{{ svg('<path d="M7 3h10l-1 4H8z"/><path d="M6 7h12l-1.2 12a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8z"/><path d="M18 10h1.5a2 2 0 0 1 0 4H18"/>') }}
+{%- elif name == "croissant" -%}{{ svg('<path d="M6.5 13h11l-1.6 7.5H8.1z"/><path d="M5 13a7 6.5 0 0 1 14 0z"/><path d="M10.2 13.5l.4 6.5M13.8 13.5l-.4 6.5"/>') }}
+{%- elif name == "scissors" -%}{{ svg('<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>') }}
+{%- elif name == "bath" -%}{{ svg('<path d="M3 12h18v2a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"/><path d="M6 12V5.5a2.2 2.2 0 0 1 4-1.2"/><path d="M7 20l-1 2M17 20l1 2"/><circle cx="14" cy="7.5" r="1.4"/><circle cx="18" cy="4.5" r="1"/>') }}
+{%- elif name == "tooth" -%}{{ svg('<path d="M12 5.5C10.5 4 8.5 3.5 7 3.8 4.8 4.3 4 6.5 4.3 9c.3 2.3 1.4 3.5 1.8 6 .4 2.8.8 5.5 2.2 5.5 1.6 0 1.5-4.5 3.7-4.5s2.1 4.5 3.7 4.5c1.4 0 1.8-2.7 2.2-5.5.4-2.5 1.5-3.7 1.8-6 .3-2.5-.5-4.7-2.7-5.2-1.5-.3-3.5.2-5 1.7z"/>') }}
+{%- elif name == "bag" -%}{{ svg('<path d="M5 8h14l-1 12.5H6z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/>') }}
+{%- elif name == "cat" -%}{{ svg('<path d="M4 4.5l3.6 3.3A8 8 0 0 1 12 6.6a8 8 0 0 1 4.4 1.2L20 4.5V13a8 7 0 0 1-16 0z"/><path d="M9.3 12v.6M14.7 12v.6M11 15.3h2l-1 1z"/>') }}
+{%- elif name == "sparkle" -%}{{ svg('<path d="M11 3l1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8z"/><path d="M19 14.5l.8 2.2 2.2.8-2.2.8L19 20.5l-.8-2.2-2.2-.8 2.2-.8z"/>') }}
+{%- elif name == "paw" -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">{{ paw_d() }}</svg>
+{%- elif name == "hanger" -%}{{ svg('<path d="M12 7.5a2 2 0 1 1 2-2c0 1.2-.8 1.6-2 2.4v1.6"/><path d="M12 9.5 3 16.5c-.8.6-.4 1.8.6 1.8h16.8c1 0 1.4-1.2.6-1.8z"/>') }}
+{%- elif name == "gown" -%}{{ svg('<path d="M9.5 3v3.2L8 9.5h8l-1.5-3.3V3"/><path d="M8 9.5 4.5 21h15L16 9.5"/><path d="M10 12.5c.6 2 .6 5-.5 8.5M14 12.5c-.6 2-.6 5 .5 8.5"/>') }}
+{%- elif name == "needle" -%}{{ svg('<path d="M4 20 18.5 5.5"/><path d="M17 4.2a1.8 1.8 0 0 1 2.8 2.8"/><path d="M18.4 5.6c3 2 1 6-2.4 5.5-3.5-.5-6 2.5-4.5 6"/>') }}
+{%- elif name == "facebook" -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4a21 21 0 0 0-2.3-.1c-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg>
+{%- elif name == "review" -%}{{ svg('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/><path d="M9.5 12h5"/>') }}
+{%- elif name == "car" -%}{{ svg('<path d="M3 16v-3.5L5.5 7.5A2 2 0 0 1 7.3 6.5h9.4a2 2 0 0 1 1.8 1L21 12.5V16"/><path d="M3 12.5h18M3 16h18"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>') }}
+{%- elif name == "wrench" -%}{{ svg('<path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 6.3-6.3a4 4 0 0 0-5-5L9.6 5.4 12 3z"/><path d="M3 21l6-6"/>') }}
+{%- elif name == "bolt" -%}{{ svg('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>') }}
+{%- elif name == "bank" -%}{{ svg('<path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/>') }}
+{%- elif name == "gauge" -%}{{ svg('<path d="M4 17a8 8 0 1 1 16 0"/><path d="m12 17 4-5"/><circle cx="12" cy="17" r="1.2"/>') }}
+{%- elif name == "shield" -%}{{ svg('<path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>') }}
+{%- elif name == "check" -%}{{ svg('<path d="m5 12.5 4.5 4.5L19 7.5"/>') }}
+{%- elif name == "calc" -%}{{ svg('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11v6M8 15h2M12 15h2M8 18h2M12 18h2"/>') }}
+{%- elif name == "key" -%}{{ svg('<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l2 2M15 8l2 2"/>') }}
+{%- elif name == "messenger" -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.5C6.6 2.5 2.5 6.4 2.5 11.6c0 2.7 1.1 5 3 6.6v3.3l3-1.7c1.1.3 2.3.5 3.5.5 5.4 0 9.5-3.9 9.5-9.1S17.4 2.5 12 2.5zm1 12.2-2.4-2.6-4.7 2.6 5.2-5.5 2.5 2.6 4.6-2.6z"/></svg>
+{%- elif name == "star" -%}{{ svg('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>') }}
+{%- elif name == "arrow" -%}{{ svg('<path d="M5 12h14M13 6l6 6-6 6"/>') }}
+{%- elif name == "prev" -%}{{ svg('<path d="M15 5l-7 7 7 7"/>', "2.2") }}
+{%- elif name == "next" -%}{{ svg('<path d="M9 5l7 7-7 7"/>', "2.2") }}
+{%- elif name == "pause" -%}{{ svg('<path d="M8 5v14M16 5v14"/>', "2.6") }}
+{%- elif name == "play" -%}{{ svg('<path d="M7 4.5v15l12-7.5z"/>', "2") }}
+{%- elif name == "message" -%}{{ svg('<path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.1A8 8 0 1 1 21 12z"/>') }}
+{%- elif name == "info" -%}{{ svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>', "2") }}
+{%- elif name == "home" -%}{{ svg('<path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/>') }}
+{%- elif name == "building" -%}{{ svg('<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3"/>') }}
+{%- else -%}{{ svg('<circle cx="12" cy="12" r="9"/>') }}
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro media(img, sizes, cls="", eager=false, extra="") -%}
+<div class="media {{ cls }}"{% if img.focus %} style="--focus: {{ img.focus }}"{% endif %}{{ extra | safe }}>
+  {%- if img.illustrative %}<span class="ph-badge image-badge">{{ c.meta.image_badge }}</span>{% endif %}
+  <img src="{{ img.resolved.src }}" srcset="{{ img.resolved.srcset }}" sizes="{{ sizes }}" width="{{ img.resolved.width }}" height="{{ img.resolved.height }}" alt="{{ img.alt }}" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+</div>
+{%- endmacro -%}
+
+
+{#- Side-view car illustration per body type (SVG, decorative; the card text names the car). -#}
+{%- macro car_svg(body, color, cls="") -%}
+{%- set shapes = {
+  "Sedan": "M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z",
+  "Hatchback": "M18 78c0-9 5-14 14-16l30-6 26-22c6-5 12-7 20-7h46c12 0 20 6 26 16l14 24c7 2 12 6 12 13v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H23c-3 0-5-2-5-5z",
+  "MPV": "M12 78c0-9 5-13 13-15l28-5 28-24c6-5 13-7 21-7h88c8 0 13 4 15 11l9 26c8 2 12 6 12 13v10c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H17c-3 0-5-2-5-5z",
+  "SUV": "M12 76c0-9 5-14 13-16l26-5 22-24c5-5 11-8 19-8h96c8 0 13 4 15 11l9 25c8 2 12 7 12 14v12c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H17c-3 0-5-2-5-5z",
+  "Pickup": "M10 76c0-9 5-14 13-16l24-4 20-24c5-5 11-8 19-8h44c7 0 12 4 13 10l3 20h82c6 0 10 4 10 10v15c0 3-2 5-5 5h-15a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H15c-3 0-5-2-5-5z"} %}
+{%- set wins = {
+  "Sedan": "M96 40h40v18H72zM144 40h28c6 0 10 2 14 6l12 12h-54z",
+  "Hatchback": "M98 38h36v20H74zM142 38h22c8 0 12 4 16 10l6 10h-44z",
+  "MPV": "M90 36h36v22H66zM134 36h44l4 22h-48zM186 36h12c4 0 6 2 7 5l5 17h-24z",
+  "SUV": "M80 34h44v24H58zM132 34h50v24h-50zM190 34h10c4 0 6 2 7 5l6 19h-23z",
+  "Pickup": "M80 34h30v22H62zM118 34h24c4 0 6 2 6 6v16h-30z"} %}
+<svg class="carart {{ cls }}" viewBox="0 0 280 110" aria-hidden="true" focusable="false">
+  <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
+  <path d="{{ shapes[body] }}" fill="{{ color }}"/>
+  <path d="{{ shapes[body] }}" fill="url(#carsheen)" opacity=".55"/>
+  <path d="{{ wins[body] }}" fill="#120C0C" opacity=".85"/>
+  <path d="M22 70h14" stroke="#E9CC8E" stroke-width="4" stroke-linecap="round"/>
+  <g class="carart__wheel" style="transform-origin:64px 92px"><circle cx="64" cy="92" r="15" fill="#050404"/><circle cx="64" cy="92" r="8" fill="#B8B2AC"/><path d="M64 84v16M56 92h16" stroke="#555" stroke-width="2"/></g>
+  <g class="carart__wheel" style="transform-origin:208px 92px"><circle cx="208" cy="92" r="15" fill="#050404"/><circle cx="208" cy="92" r="8" fill="#B8B2AC"/><path d="M208 84v16M200 92h16" stroke="#555" stroke-width="2"/></g>
+</svg>
+{%- endmacro -%}
+
+{%- macro svg_defs() -%}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="carsheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+  <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9CC8E" stop-opacity=".9"/><stop offset="1" stop-color="#E9CC8E" stop-opacity="0"/></linearGradient>
+  <linearGradient id="goldtxt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9CC8E"/><stop offset="1" stop-color="#9C6E2F"/></linearGradient>
+</defs></svg>
+{%- endmacro -%}
+
+{#- Hero scene: speed lines, the red car drives in, headlight beam sweeps, then the APPROVED stamp lands. -#}
+{%- macro hero_scene() -%}
+<div class="scene" aria-hidden="true">
+  <div class="scene__glow"></div>
+  <div class="scene__lines">{% for i in range(9) %}<span style="--i:{{ i }}; --y:{{ [12, 26, 38, 50, 61, 70, 79, 88, 33][i] }}%; --w:{{ [38, 22, 46, 30, 52, 26, 40, 20, 18][i] }}%"></span>{% endfor %}</div>
+  <div class="scene__road"><span></span></div>
+  <div class="scene__car">
+    <svg class="scene__beam" viewBox="0 0 300 120" focusable="false"><path d="M0 60 300 0v120z" fill="url(#beam)"/></svg>
+    <div class="scene__flip">{{ car_svg("Sedan", "#A60E0F", "carart--hero") }}</div>
+  </div>
+  <div class="stamp"><span>Approved</span></div>
+</div>
+{%- endmacro -%}
+
+{%- macro socials_row() -%}
+<ul class="socials">
+  {%- for s in c.socials %}
+  <li><a class="social" href="{{ s.href }}" target="_blank" rel="noopener">{{ icon(s.icon) }}<span>{{ s.name }}</span>{% if s.note %}<small>{{ s.note }}</small>{% endif %}<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+  {%- endfor %}
+</ul>
+{%- endmacro -%}
+
+{%- macro contact_buttons(cls="") -%}
+<div class="btn-row {{ cls }}">
+  <a class="btn btn--primary btn--lg" href="tel:{{ b.phone_e164 }}">{{ icon("phone") }}Call {{ b.phone_display }}</a>
+  <a class="btn btn--gold btn--lg" href="{{ b.facebook_url }}" target="_blank" rel="noopener">{{ icon("messenger") }}Message us on Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
+</div>
+{%- endmacro -%}
+
+{%- macro disabled_note(id) -%}
+<p class="form-disabled-note" id="{{ id }}">{{ icon("info") }}<span>This form is disabled in this demo. Please call <a href="tel:{{ b.phone_e164 }}">{{ b.phone_display }}</a> or message us on Facebook.</span></p>
+{%- endmacro -%}
+
+{%- macro steps_list(items) -%}
+<ol class="road-steps">
+  {%- for st in items %}
+  <li class="reveal" style="--d: {{ loop.index0 * 0.1 }}s"><span class="road-steps__n">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>
+  {%- endfor %}
+</ol>
+{%- endmacro -%}
+
+{%- macro listing_card(l, i=0) -%}
+<article class="listing reveal" style="--d: {{ (i % 3) * 0.08 }}s" data-tilt data-condition="{{ l.condition }}" data-body="{{ l.body }}" aria-labelledby="l-{{ l.id }}">
+  <div class="listing__art">
+    <span class="badge-sample">Sample listing</span>
+    {{ car_svg(l.body, l.color) }}
+    <span class="ph-badge image-badge">{{ c.meta.image_badge }}</span>
+  </div>
+  <div class="listing__body">
+    <p class="listing__meta"><span class="chip-static">{{ l.condition }}</span><span class="chip-static">{{ l.body }}</span></p>
+    <h3 id="l-{{ l.id }}">{{ l.year }} {{ l.name }}</h3>
+    <ul class="listing__specs"><li>{{ l.trans }}</li><li>{{ l.fuel }}</li>{% if l.extra %}<li>{{ l.extra }}</li>{% endif %}</ul>
+    <p class="listing__price">Ask for price</p>
+    <div class="btn-row"><a class="btn btn--gold btn--sm" href="financing.html#calc">{{ icon("calc") }}Estimate monthly</a><a class="btn btn--ghost btn--sm" href="{{ b.facebook_url }}" target="_blank" rel="noopener">{{ icon("messenger") }}Inquire<span class="visually-hidden"> about the {{ l.year }} {{ l.name }} on Facebook (opens in a new tab)</span></a></div>
+  </div>
+</article>
+{%- endmacro -%}
+
+{%- macro domain_bar() -%}
+<div class="browser" role="img" aria-label="Example browser address bar showing okscars.ph or okscars.com (example addresses only)">
+  <span class="browser__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="browser__url" aria-hidden="true">okscars<span class="tld"><span class="tld__a">.ph</span><span class="tld__b">.com</span></span></span>
+</div>
+{%- endmacro -%}
+
+{%- macro package_panel() -%}
+{%- set pk = c.package %}
+<section class="package" aria-labelledby="package-title">
+  <div class="container package__inner reveal">
+    <p class="package__tag">{{ pk.label }}</p>
+    <h2 id="package-title" class="package__title">{{ pk.heading }}</h2>
+    <p class="package__intro">{{ pk.intro }}</p>
+    <div class="package__grid">
+      <ol class="package__list">{%- for f in pk.features %}<li><span class="package__n">{{ f.n }}</span>{{ f.text }}</li>{% endfor %}</ol>
+      <div class="package__domain">{{ domain_bar() }}<p><strong>{{ pk.domain_line }}</strong></p><p class="package__note">{{ pk.domain_note }}</p></div>
+    </div>
+  </div>
+</section>
+{%- endmacro -%}
+
+{%- macro road_divider() -%}
+<div class="road-div" aria-hidden="true"><span></span></div>
+{%- endmacro -%}

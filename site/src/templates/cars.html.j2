@@ -1,0 +1,36 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon, listing_card, contact_buttons with context %}
+{% block content %}
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container section-head">
+    <p class="eyebrow">Cars for sale · Antipolo, Rizal</p>
+    <h1 id="page-title">Brand-new and second-hand cars for sale</h1>
+    <p class="lead">Every unit goes through our mechanic first. Low down payment promos on selected units ({{ c.promo.note | lower }}).</p>
+  </div>
+</section>
+<section class="section section--tight" aria-labelledby="list-title">
+  <div class="container">
+    <h2 id="list-title" class="visually-hidden">Sample listings</h2>
+    <div class="filters" role="group" aria-label="Filter sample listings" data-filters>
+      <div class="filters__row" role="group" aria-label="Condition">
+        <button type="button" class="chip" data-filter="condition" data-value="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="condition" data-value="Brand-new" aria-pressed="false">Brand-new</button>
+        <button type="button" class="chip" data-filter="condition" data-value="Second-hand" aria-pressed="false">Second-hand</button>
+      </div>
+      <div class="filters__row" role="group" aria-label="Body type">
+        <button type="button" class="chip" data-filter="body" data-value="all" aria-pressed="true">All types</button>
+        {%- for t in ["Sedan", "Hatchback", "MPV", "SUV", "Pickup"] %}
+        <button type="button" class="chip" data-filter="body" data-value="{{ t }}" aria-pressed="false">{{ t }}</button>
+        {%- endfor %}
+      </div>
+      <p class="filters__count" aria-live="polite" data-filter-count>Showing {{ c.listings | length }} sample listings</p>
+    </div>
+    <div class="listings">{% for l in c.listings %}{{ listing_card(l, loop.index0) }}{% endfor %}</div>
+    <p class="filters__empty" data-filter-empty hidden>No sample listings match. Try another filter, or message us for what's available.</p>
+    <p class="note">{{ c.listing_note }}</p>
+  </div>
+</section>
+<section class="section cta-band" aria-labelledby="cars-cta"><div class="container reveal">
+  <h2 id="cars-cta">Looking for a specific unit?</h2><p>Tell us what you need and your budget. We'll check what's available.</p>{{ contact_buttons("center") }}
+</div></section>
+{% endblock %}
