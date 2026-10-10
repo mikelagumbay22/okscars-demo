@@ -17,7 +17,7 @@ for w in ["mailto", "kennyboooo", "yahoo", "gmail", "aggregaterating", "oliver",
 vis = H.unescape(" ".join(re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style)\b.*?</\1>", " ", texts[f], flags=re.S)) for f in texts if f.suffix == ".html"))
 for pat, why in [(r"\b(BDO|BPI|PNB|RCBC|AUB|PSBank)\b|metrobank|security bank|china ?bank|union ?bank|eastwest|maybank|landbank", "real bank names"),
                  (r"guarantee|warrant", "guarantees/warranties"), (r"\b0% interest|zero interest|lowest rate|\binterest rate of", "rate claims"),
-                 (r"since (19|20)\d\d|award|\bcertified", "years/awards"), (r"\bstock\b", "'stock' wording"), (r"\$\s?\d", "$ prices")]:
+                 (r"since (19|20)\d\d|award|\bcertified", "years/awards"), (r"\bstock (image|photo|photograph|footage|picture)", "'stock image' wording"), (r"\$\s?\d", "$ prices")]:
     ok(not re.search(pat, vis, re.I), f"no {why} in visible text")
 ok(not re.search(r"₱\s?\d[\d,]*\s*(?:–|-|to)\s*₱", vis), "no invented price ranges")
 ok(all('href="tel:+639457743386"' in p.read_text() for p in pages), "tap-to-call on every page")
@@ -26,7 +26,14 @@ ok(all("Message us on Facebook" in p.read_text() for p in pages), "'Message us o
 idx = H.unescape((D / "index.html").read_text())
 for s in ["Where approval stories", "1000+", "happy clients", "10+ bank partners", "287K", "Promo to confirm · Terms apply", "₱9K or ₱19K", "Tara, apply na!", "Sulit"]:
     ok(s in idx, f"Home has '{s}'")
-ok('class="stamp"' in idx and "Approved" in idx, "APPROVED stamp on Home")
+raw = (D / "index.html").read_text()
+ok('data-uphero' in raw and idx.count("Illustrative image, not a photo of Oks Cars' units") >= 1 and 'class="ph-badge image-badge uphero__badge"' in raw, "scroll hero present with one hero badge")
+ok("part-front-splitter" not in alltext and not (D / "img/hero/part-front-splitter.webp").exists(), "no front splitter (BMW-like grille)")
+ok(raw.count('fetchpriority="high"') == 1 and raw.count("data-srcset=") == 2 and 'src="img/hero/stage-1-1600.webp"' in raw, "only stage 1 eager; stages 2-3 lazy via data-srcset")
+ok('<h1 id="hero-title">' in raw and 'href="tel:+639457743386"' in raw.split('class="uphero__copy"')[1].split("</section>")[0], "headline + CTAs in hero HTML")
+ok(all(f.stat().st_size < 150_000 for f in (D / "img/hero").glob("*.webp")), "hero WebPs under 150 KB")
+ok(sorted(f.name for f in (D / "img/listings").glob("*.webp")) == sorted(f"{n}-{w}.webp" for n in ["almera", "vios", "wigo", "xpander", "fortuner", "ranger"] for w in (600, 1200)) and all(f.stat().st_size < 150_000 for f in (D / "img/listings").glob("*")), "12 listing WebPs (600/1200) under 150 KB")
+ok(all("carart" not in p.read_text() for p in pages if p.name != "404.html"), "listing/hero SVG car drawings removed (404 only)")
 cars = H.unescape((D / "cars-for-sale.html").read_text())
 ok(cars.count('class="badge-sample">Sample listing') == 6, "6 listings badged 'Sample listing'")
 ok(cars.count("Ask for price") == 6, "each listing 'Ask for price'")
@@ -65,8 +72,13 @@ for f in pages:
     ok(not bad, f"{n}: all refs relative and resolvable {bad[:3]}")
     for img in re.findall(r"<img\b[^>]*>", s):
         ok(re.search(r'\swidth="\d+"', img) and re.search(r'\sheight="\d+"', img), f"{n}: img has width/height")
-    for m in re.finditer(r'<div class="(media|listing__art)[^"]*"[^>]*>(.*?)</div>', s, re.S):
-        ok(BADGE in H.unescape(m.group(2)), f"{n}: image badged")
+    for m in re.finditer(r'<div class="media[^"]*"[^>]*>(.*?)</div>', s, re.S):
+        ok(BADGE in H.unescape(m.group(1)), f"{n}: image badged")
+    for m in re.finditer(r'<div class="listing__art">(.*?)</div>', s, re.S):
+        g = m.group(1); im = re.search(r"<img\b[^>]*>", g)
+        ok(im and "Sample listing" in g and "Illustrative photo, not the actual unit" in g and "<svg" not in g, f"{n}: listing photo badged + Sample listing, no SVG")
+        im = im.group(0) if im else ""
+        ok(all(a in im for a in ['loading="lazy"', 'decoding="async"', 'width="600"', 'height="450"', 'srcset="img/listings/', '-1200.webp 1200w', 'sizes="']) and re.search(r'alt="Illustrative photo of a [^"]+ similar to a [^"]+"', im), f"{n}: listing img attrs/alt")
     for ld in re.findall(r'<script type="application/ld\+json">(.*?)</script>', s, re.S):
         d = json.loads(ld)
         ok(d["@type"] == ["AutoDealer"] and set(d) <= {"@context", "@type", "name", "address", "telephone", "image", "sameAs"} and d["sameAs"] == [FB] and d["image"].endswith("img/logo-512.png"), f"{n}: JSON-LD keys {sorted(d)}")

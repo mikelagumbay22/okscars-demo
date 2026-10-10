@@ -122,6 +122,89 @@
   }
 
 
+
+  // ---------- Scroll-scrubbed car upgrade hero (rAF-throttled; transform/opacity/filter only) ----------
+  var up = document.querySelector("[data-uphero]");
+  if (up) {
+    var car = function (n) { return up.querySelector(".uphero__car--" + n); };
+    var loadCar = function (n) { var im = car(n); if (im && im.dataset.srcset) { im.srcset = im.dataset.srcset; im.removeAttribute("data-srcset"); } };
+    if (reduce()) {
+      loadCar(3);
+      up.querySelectorAll(".uphero__steps [data-step]").forEach(function (li) { if (li.dataset.step === "2") li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current"); });
+    } else {
+      up.classList.add("is-scrub");
+      var mobile = window.matchMedia("(max-width: 899px)");
+      var parts = [].slice.call(up.querySelectorAll("[data-part]")).map(function (el) {
+        var f = el.dataset.from.split(",");
+        return { el: el, fx: parseFloat(f[0]), fy: parseFloat(f[1]), s: +el.dataset.start, e: +el.dataset.end, spin: el.hasAttribute("data-spin"),
+                 desk: el.classList.contains("uphero__part--desk"), sprite: el.querySelector(".uphero__sprite"),
+                 ghosts: el.querySelectorAll(".uphero__ghost"), flash: el.querySelector(".uphero__flash"), loaded: false };
+      });
+      var steps = up.querySelectorAll(".uphero__steps [data-step]");
+      var stage = up.querySelector(".uphero__stage"), copy = up.querySelector(".uphero__copy"), hint = up.querySelector(".uphero__hint");
+      var c1 = car(1), c2 = car(2), c3 = car(3);
+      var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+      var seg = function (p, a, b) { return clamp((p - a) / (b - a)); };
+      var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+      var loadPart = function (pt) {
+        if (pt.loaded) return; pt.loaded = true;
+        pt.el.querySelectorAll("img[data-src]").forEach(function (im) { im.src = im.dataset.src; im.removeAttribute("data-src"); });
+      };
+      var lastStep = -1, ticking3 = false;
+      var render = function () {
+        ticking3 = false;
+        var r = up.getBoundingClientRect(), span = r.height - window.innerHeight;
+        var p = span > 0 ? clamp(-r.top / span) : 0, mob = mobile.matches;
+        // just-in-time loading
+        if (p > 0.0 || r.top < window.innerHeight) loadCar(2);
+        if (p > 0.25) loadCar(3);
+        parts.forEach(function (pt) { if (!(mob && pt.desk) && p > pt.s - 0.12) loadPart(pt); });
+        // crossfades: 1 -> 2 (.10-.32), 2 -> 3 (.56-.72)
+        var a2 = seg(p, .10, .32), a3 = seg(p, .56, .72);
+        c1.style.opacity = 1 - a2;
+        c2.style.opacity = a2 * (1 - a3);
+        c3.style.opacity = a3;
+        // parts fly in, land with a flash, then melt into stage 3 (.66-.76)
+        var melt = 1 - seg(p, .66, .76);
+        parts.forEach(function (pt) {
+          if (mob && pt.desk) return;
+          var t = seg(p, pt.s, pt.e), k = ease(t), vx = pt.fx * (1 - k), vy = pt.fy * (1 - k);
+          var rot = pt.spin ? (1 - k) * -900 : (1 - k) * (pt.fx > 0 ? 12 : -12);
+          var vis = (p > pt.s ? 1 : 0) * melt;
+          pt.el.style.opacity = vis;
+          pt.el.style.transform = "translate(-50%, -50%) translate(" + vx.toFixed(2) + "vw," + vy.toFixed(2) + "vh) rotate(" + rot.toFixed(1) + "deg)";
+          var moving = t > 0 && t < 1, speed = moving ? (1 - k) : 0;
+          if (!mob) {
+            pt.sprite.style.filter = moving ? "blur(" + (speed * 6).toFixed(1) + "px)" : "none";
+            for (var g = 0; g < pt.ghosts.length; g++) {
+              var lag = (g + 1) * 0.07;
+              pt.ghosts[g].style.opacity = moving ? (0.32 / (g + 1)) * Math.min(1, speed * 3) : 0;
+              pt.ghosts[g].style.transform = "translate(" + (pt.fx * lag * speed * 4).toFixed(2) + "vw," + (pt.fy * lag * speed * 4).toFixed(2) + "vh)";
+            }
+          }
+          var f = seg(p, pt.e - 0.005, pt.e + 0.05), fl = f > 0 && f < 1 ? Math.sin(f * Math.PI) : 0;
+          pt.flash.style.opacity = fl.toFixed(3);
+          pt.flash.style.transform = "scale(" + (0.4 + f * 0.9).toFixed(3) + ")";
+        });
+        // end: stage eases aside (desktop) / up (mobile); headline + CTAs fade in
+        var e = ease(seg(p, .76, .92));
+        stage.style.transform = mob ? "translateY(" + (-e * 4).toFixed(2) + "vh) scale(" + (1 - e * .06).toFixed(3) + ")"
+                                    : "translateX(" + (e * 20).toFixed(2) + "vw) scale(" + (1 - e * .38).toFixed(3) + ")";
+        copy.style.opacity = e.toFixed(3);
+        copy.style.transform = "translateY(" + ((1 - e) * 30).toFixed(1) + "px)";
+        hint.style.opacity = (1 - seg(p, 0, .08)).toFixed(3);
+        var step = p < .32 ? 0 : p < .66 ? 1 : 2;
+        if (step !== lastStep) {
+          lastStep = step;
+          steps.forEach(function (li) { if (+li.dataset.step === step) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current"); });
+        }
+      };
+      var onScroll3 = function () { if (!ticking3) { ticking3 = true; requestAnimationFrame(render); } };
+      window.addEventListener("scroll", onScroll3, { passive: true });
+      window.addEventListener("resize", onScroll3, { passive: true });
+      render();
+    }
+  }
   // ---------- Count-up numbers (1000+, 10+). Text is final in the HTML; JS only animates it. ----------
   var peso = new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP", maximumFractionDigits: 0 });
   var countEls = document.querySelectorAll("[data-count]");

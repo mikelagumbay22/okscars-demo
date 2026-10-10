@@ -53,20 +53,12 @@
 {%- endmacro -%}
 
 
-{#- Side-view car illustration per body type (SVG, decorative; the card text names the car). -#}
+{#- Decorative SVG car for the 404 page only (listings use photos). -#}
 {%- macro car_svg(body, color, cls="") -%}
 {%- set shapes = {
-  "Sedan": "M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z",
-  "Hatchback": "M18 78c0-9 5-14 14-16l30-6 26-22c6-5 12-7 20-7h46c12 0 20 6 26 16l14 24c7 2 12 6 12 13v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H23c-3 0-5-2-5-5z",
-  "MPV": "M12 78c0-9 5-13 13-15l28-5 28-24c6-5 13-7 21-7h88c8 0 13 4 15 11l9 26c8 2 12 6 12 13v10c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H17c-3 0-5-2-5-5z",
-  "SUV": "M12 76c0-9 5-14 13-16l26-5 22-24c5-5 11-8 19-8h96c8 0 13 4 15 11l9 25c8 2 12 7 12 14v12c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H17c-3 0-5-2-5-5z",
-  "Pickup": "M10 76c0-9 5-14 13-16l24-4 20-24c5-5 11-8 19-8h44c7 0 12 4 13 10l3 20h82c6 0 10 4 10 10v15c0 3-2 5-5 5h-15a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H15c-3 0-5-2-5-5z"} %}
+  "Hatchback": "M18 78c0-9 5-14 14-16l30-6 26-22c6-5 12-7 20-7h46c12 0 20 6 26 16l14 24c7 2 12 6 12 13v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H23c-3 0-5-2-5-5z"} %}
 {%- set wins = {
-  "Sedan": "M96 40h40v18H72zM144 40h28c6 0 10 2 14 6l12 12h-54z",
-  "Hatchback": "M98 38h36v20H74zM142 38h22c8 0 12 4 16 10l6 10h-44z",
-  "MPV": "M90 36h36v22H66zM134 36h44l4 22h-48zM186 36h12c4 0 6 2 7 5l5 17h-24z",
-  "SUV": "M80 34h44v24H58zM132 34h50v24h-50zM190 34h10c4 0 6 2 7 5l6 19h-23z",
-  "Pickup": "M80 34h30v22H62zM118 34h24c4 0 6 2 6 6v16h-30z"} %}
+  "Hatchback": "M98 38h36v20H74zM142 38h22c8 0 12 4 16 10l6 10h-44z"} %}
 <svg class="carart {{ cls }}" viewBox="0 0 280 110" aria-hidden="true" focusable="false">
   <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
   <path d="{{ shapes[body] }}" fill="{{ color }}"/>
@@ -86,19 +78,6 @@
 </defs></svg>
 {%- endmacro -%}
 
-{#- Hero scene: speed lines, the red car drives in, headlight beam sweeps, then the APPROVED stamp lands. -#}
-{%- macro hero_scene() -%}
-<div class="scene" aria-hidden="true">
-  <div class="scene__glow"></div>
-  <div class="scene__lines">{% for i in range(9) %}<span style="--i:{{ i }}; --y:{{ [12, 26, 38, 50, 61, 70, 79, 88, 33][i] }}%; --w:{{ [38, 22, 46, 30, 52, 26, 40, 20, 18][i] }}%"></span>{% endfor %}</div>
-  <div class="scene__road"><span></span></div>
-  <div class="scene__car">
-    <svg class="scene__beam" viewBox="0 0 300 120" focusable="false"><path d="M0 60 300 0v120z" fill="url(#beam)"/></svg>
-    <div class="scene__flip">{{ car_svg("Sedan", "#A60E0F", "carart--hero") }}</div>
-  </div>
-  <div class="stamp"><span>Approved</span></div>
-</div>
-{%- endmacro -%}
 
 {%- macro socials_row() -%}
 <ul class="socials">
@@ -131,8 +110,8 @@
 <article class="listing reveal" style="--d: {{ (i % 3) * 0.08 }}s" data-tilt data-condition="{{ l.condition }}" data-body="{{ l.body }}" aria-labelledby="l-{{ l.id }}">
   <div class="listing__art">
     <span class="badge-sample">Sample listing</span>
-    {{ car_svg(l.body, l.color) }}
-    <span class="ph-badge image-badge">{{ c.meta.image_badge }}</span>
+    <img src="img/listings/{{ l.photo }}-600.webp" srcset="img/listings/{{ l.photo }}-600.webp 600w, img/listings/{{ l.photo }}-1200.webp 1200w" sizes="(min-width: 1040px) 380px, (min-width: 680px) 46vw, 92vw" width="600" height="450" alt="{{ l.alt }}" loading="lazy" decoding="async">
+    <span class="ph-badge image-badge">{{ c.meta.listing_photo_badge }}</span>
   </div>
   <div class="listing__body">
     <p class="listing__meta"><span class="chip-static">{{ l.condition }}</span><span class="chip-static">{{ l.body }}</span></p>

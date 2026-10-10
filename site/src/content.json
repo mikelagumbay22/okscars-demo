@@ -35,7 +35,8 @@
       "business_type": "car dealer",
       "font": "../work/fonts/barlow-600-latin.ttf"
     },
-    "image_max_kb": 150
+    "image_max_kb": 150,
+    "listing_photo_badge": "Illustrative photo, not the actual unit"
   },
   "export": {
     "banned_words": [
@@ -57,7 +58,7 @@
       "yahoo",
       "gmail",
       "aggregateRating",
-      "\\bstock\\b",
+      "\\bstock (image|photo|photograph|footage|picture)",
       "priceRange",
       "paymentAccepted",
       "\"review\"",
@@ -316,8 +317,9 @@
       "body": "Sedan",
       "trans": "Automatic",
       "fuel": "Gasoline",
-      "color": "#1C1213",
-      "extra": "360° camera"
+      "extra": "360° camera",
+      "photo": "almera",
+      "alt": "Illustrative photo of a black sedan similar to a Nissan Almera"
     },
     {
       "id": "vios",
@@ -327,7 +329,8 @@
       "body": "Sedan",
       "trans": "Automatic",
       "fuel": "Gasoline",
-      "color": "#A60E0F"
+      "photo": "vios",
+      "alt": "Illustrative photo of a red sedan similar to a Toyota Vios"
     },
     {
       "id": "wigo",
@@ -337,7 +340,8 @@
       "body": "Hatchback",
       "trans": "Automatic",
       "fuel": "Gasoline",
-      "color": "#DCD9D5"
+      "photo": "wigo",
+      "alt": "Illustrative photo of a white hatchback similar to a Toyota Wigo"
     },
     {
       "id": "xpander",
@@ -347,7 +351,8 @@
       "body": "MPV",
       "trans": "Automatic",
       "fuel": "Gasoline",
-      "color": "#838080"
+      "photo": "xpander",
+      "alt": "Illustrative photo of a grey MPV similar to a Mitsubishi Xpander"
     },
     {
       "id": "fortuner",
@@ -357,7 +362,8 @@
       "body": "SUV",
       "trans": "Automatic",
       "fuel": "Diesel",
-      "color": "#3B322D"
+      "photo": "fortuner",
+      "alt": "Illustrative photo of a dark brown SUV similar to a Toyota Fortuner"
     },
     {
       "id": "ranger",
@@ -367,7 +373,8 @@
       "body": "Pickup",
       "trans": "Automatic",
       "fuel": "Diesel",
-      "color": "#E05C54"
+      "photo": "ranger",
+      "alt": "Illustrative photo of a red pickup truck similar to a Ford Ranger"
     }
   ],
   "listing_note": "Sample listings for this demo only, not Oks Cars' current inventory. Ask us for available units and prices.",

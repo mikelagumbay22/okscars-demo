@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("scrub-ok")</script>
   <title>Oks Cars Auto Financing | Cars &amp; Car Financing in Antipolo, Rizal (demo concept)</title>
   <meta name="description" content="Demo concept site: quality brand-new and second-hand cars with fast financing through 10+ bank partners, in Antipolo, Rizal. Not the official Oks Cars site.">
   <meta property="og:type" content="website">
@@ -26,7 +26,8 @@
   <meta name="theme-color" content="#050404">
   <link rel="preload" href="fonts/barlowcondensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.css?v=1d5b0b0d">
+  <link rel="preload" href="fonts/barlow-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=3a2798fb">
   <link rel="icon" href="img/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
@@ -88,41 +89,70 @@
 </header>
 <main id="main">
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container hero__grid">
-    <div class="hero__copy">
+<section class="uphero" aria-labelledby="hero-title" data-uphero>
+  <div class="uphero__sticky">
+    <ol class="uphero__steps" aria-label="Car upgrade stages">
+      <li data-step="0" aria-current="step"><span>Stock</span></li><li aria-hidden="true" class="uphero__arrow">→</li>
+      <li data-step="1"><span>Upgraded</span></li><li aria-hidden="true" class="uphero__arrow">→</li>
+      <li data-step="2"><span>Supercar</span></li>
+    </ol>
+    <div class="uphero__stage" role="img" aria-label="Illustration: a plain silver sedan upgraded step by step into a red, black and gold sports sedan with gold wheels and a rear wing">
+      <img class="uphero__car uphero__car--1" src="img/hero/stage-1-1600.webp" srcset="img/hero/stage-1-900.webp 900w, img/hero/stage-1-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" fetchpriority="high" decoding="async">
+      <img class="uphero__car uphero__car--2" data-srcset="img/hero/stage-2-900.webp 900w, img/hero/stage-2-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" decoding="async">
+      <img class="uphero__car uphero__car--3" data-srcset="img/hero/stage-3-900.webp 900w, img/hero/stage-3-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" decoding="async">
+      <div class="uphero__part" data-part data-from="-130vw,4vh" data-start="0.14" data-end="0.3" data-spin style="left: 39.8%; top: 64.1%; width: 14%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+      <div class="uphero__part uphero__part--desk" data-part data-from="-150vw,4vh" data-start="0.18" data-end="0.34" data-spin style="left: 82.2%; top: 60.5%; width: 12%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/part-wheel.webp" width="360" height="360" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+      <div class="uphero__part" data-part data-from="30vw,-90vh" data-start="0.4" data-end="0.54" style="left: 83%; top: 30%; width: 15%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/part-spoiler.webp" width="560" height="356" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/part-spoiler.webp" width="560" height="356" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/part-spoiler.webp" width="560" height="356" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+      <div class="uphero__part uphero__part--desk" data-part data-from="130vw,0vh" data-start="0.46" data-end="0.6" style="left: 61%; top: 71.5%; width: 31%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/part-side-skirt.webp" width="900" height="276" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/part-side-skirt.webp" width="900" height="276" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/part-side-skirt.webp" width="900" height="276" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+      <div class="uphero__part uphero__part--desk" data-part data-from="90vw,40vh" data-start="0.52" data-end="0.64" style="left: 90.5%; top: 65.5%; width: 4.5%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/part-exhaust.webp" width="240" height="258" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/part-exhaust.webp" width="240" height="258" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/part-exhaust.webp" width="240" height="258" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+    </div>
+    <span class="ph-badge image-badge uphero__badge">Illustrative image, not a photo of Oks Cars&#39; units</span>
+    <div class="uphero__copy">
       <p class="eyebrow">Antipolo, Rizal · Car dealership & auto financing</p>
       <h1 id="hero-title"><span class="gold-text">Where approval stories</span> are made</h1>
       <p class="lead">Quality brand-new and second-hand cars, checked by our mechanic, with fast financing approval through 10+ bank partners. Sulit na, walang hassle pa.</p>
       <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="financing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tara, apply na!</a>
-        <a class="btn btn--ghost btn--lg" href="cars-for-sale.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 16v-3.5L5.5 7.5A2 2 0 0 1 7.3 6.5h9.4a2 2 0 0 1 1.8 1L21 12.5V16"/><path d="M3 12.5h18M3 16h18"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>See cars for sale</a>
+        <a class="btn btn--primary btn--lg" href="tel:+639457743386"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call +63 945 774 3386</a>
+        <a class="btn btn--gold btn--lg" href="https://www.facebook.com/profile.php?id=100063768174483" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.5C6.6 2.5 2.5 6.4 2.5 11.6c0 2.7 1.1 5 3 6.6v3.3l3-1.7c1.1.3 2.3.5 3.5.5 5.4 0 9.5-3.9 9.5-9.1S17.4 2.5 12 2.5zm1 12.2-2.4-2.6-4.7 2.6 5.2-5.5 2.5 2.6 4.6-2.6z"/></svg>Message us on Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="btn btn--ghost btn--lg" href="financing.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tara, apply na!</a>
       </div>
-      <ul class="stats">
-        <li><span class="stats__num" data-count="1000" data-suffix="+">1000+</span><span class="stats__lbl">happy clients</span></li>
-        <li><span class="stats__num" data-count="10" data-suffix="+">10+</span><span class="stats__lbl">bank partners</span></li>
-        <li><span class="stats__num">287K</span><span class="stats__lbl">followers on Facebook</span></li>
-      </ul>
     </div>
-    <div class="hero__art"><div class="scene" aria-hidden="true">
-  <div class="scene__glow"></div>
-  <div class="scene__lines"><span style="--i:0; --y:12%; --w:38%"></span><span style="--i:1; --y:26%; --w:22%"></span><span style="--i:2; --y:38%; --w:46%"></span><span style="--i:3; --y:50%; --w:30%"></span><span style="--i:4; --y:61%; --w:52%"></span><span style="--i:5; --y:70%; --w:26%"></span><span style="--i:6; --y:79%; --w:40%"></span><span style="--i:7; --y:88%; --w:20%"></span><span style="--i:8; --y:33%; --w:18%"></span></div>
-  <div class="scene__road"><span></span></div>
-  <div class="scene__car">
-    <svg class="scene__beam" viewBox="0 0 300 120" focusable="false"><path d="M0 60 300 0v120z" fill="url(#beam)"/></svg>
-    <div class="scene__flip">
-<svg class="carart carart--hero" viewBox="0 0 280 110" aria-hidden="true" focusable="false">
-  <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="#A60E0F"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="url(#carsheen)" opacity=".55"/>
-  <path d="M96 40h40v18H72zM144 40h28c6 0 10 2 14 6l12 12h-54z" fill="#120C0C" opacity=".85"/>
-  <path d="M22 70h14" stroke="#E9CC8E" stroke-width="4" stroke-linecap="round"/>
-  <g class="carart__wheel" style="transform-origin:64px 92px"><circle cx="64" cy="92" r="15" fill="#050404"/><circle cx="64" cy="92" r="8" fill="#B8B2AC"/><path d="M64 84v16M56 92h16" stroke="#555" stroke-width="2"/></g>
-  <g class="carart__wheel" style="transform-origin:208px 92px"><circle cx="208" cy="92" r="15" fill="#050404"/><circle cx="208" cy="92" r="8" fill="#B8B2AC"/><path d="M208 84v16M200 92h16" stroke="#555" stroke-width="2"/></g>
-</svg></div>
+    <p class="uphero__hint" aria-hidden="true">Scroll to upgrade ↓</p>
   </div>
-  <div class="stamp"><span>Approved</span></div>
-</div></div>
+</section>
+
+<section class="statbar" aria-label="Oks Cars in numbers">
+  <div class="container">
+    <ul class="stats">
+      <li><span class="stats__num" data-count="1000" data-suffix="+">1000+</span><span class="stats__lbl">happy clients</span></li>
+      <li><span class="stats__num" data-count="10" data-suffix="+">10+</span><span class="stats__lbl">bank partners</span></li>
+      <li><span class="stats__num">287K</span><span class="stats__lbl">followers on Facebook</span></li>
+    </ul>
   </div>
 </section>
 
@@ -155,17 +185,8 @@
     <div class="listings"><article class="listing reveal" style="--d: 0.0s" data-tilt data-condition="Second-hand" data-body="Sedan" aria-labelledby="l-almera">
   <div class="listing__art">
     <span class="badge-sample">Sample listing</span>
-    
-<svg class="carart " viewBox="0 0 280 110" aria-hidden="true" focusable="false">
-  <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="#1C1213"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="url(#carsheen)" opacity=".55"/>
-  <path d="M96 40h40v18H72zM144 40h28c6 0 10 2 14 6l12 12h-54z" fill="#120C0C" opacity=".85"/>
-  <path d="M22 70h14" stroke="#E9CC8E" stroke-width="4" stroke-linecap="round"/>
-  <g class="carart__wheel" style="transform-origin:64px 92px"><circle cx="64" cy="92" r="15" fill="#050404"/><circle cx="64" cy="92" r="8" fill="#B8B2AC"/><path d="M64 84v16M56 92h16" stroke="#555" stroke-width="2"/></g>
-  <g class="carart__wheel" style="transform-origin:208px 92px"><circle cx="208" cy="92" r="15" fill="#050404"/><circle cx="208" cy="92" r="8" fill="#B8B2AC"/><path d="M208 84v16M200 92h16" stroke="#555" stroke-width="2"/></g>
-</svg>
-    <span class="ph-badge image-badge">Illustrative image, not a photo of Oks Cars&#39; units</span>
+    <img src="img/listings/almera-600.webp" srcset="img/listings/almera-600.webp 600w, img/listings/almera-1200.webp 1200w" sizes="(min-width: 1040px) 380px, (min-width: 680px) 46vw, 92vw" width="600" height="450" alt="Illustrative photo of a black sedan similar to a Nissan Almera" loading="lazy" decoding="async">
+    <span class="ph-badge image-badge">Illustrative photo, not the actual unit</span>
   </div>
   <div class="listing__body">
     <p class="listing__meta"><span class="chip-static">Second-hand</span><span class="chip-static">Sedan</span></p>
@@ -177,17 +198,8 @@
 </article><article class="listing reveal" style="--d: 0.08s" data-tilt data-condition="Second-hand" data-body="Sedan" aria-labelledby="l-vios">
   <div class="listing__art">
     <span class="badge-sample">Sample listing</span>
-    
-<svg class="carart " viewBox="0 0 280 110" aria-hidden="true" focusable="false">
-  <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="#A60E0F"/>
-  <path d="M14 78c0-9 5-14 14-16l34-6 26-20c6-4 12-6 20-6h50c8 0 14 3 20 8l20 18 30 5c9 2 14 7 14 15v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H19c-3 0-5-2-5-5z" fill="url(#carsheen)" opacity=".55"/>
-  <path d="M96 40h40v18H72zM144 40h28c6 0 10 2 14 6l12 12h-54z" fill="#120C0C" opacity=".85"/>
-  <path d="M22 70h14" stroke="#E9CC8E" stroke-width="4" stroke-linecap="round"/>
-  <g class="carart__wheel" style="transform-origin:64px 92px"><circle cx="64" cy="92" r="15" fill="#050404"/><circle cx="64" cy="92" r="8" fill="#B8B2AC"/><path d="M64 84v16M56 92h16" stroke="#555" stroke-width="2"/></g>
-  <g class="carart__wheel" style="transform-origin:208px 92px"><circle cx="208" cy="92" r="15" fill="#050404"/><circle cx="208" cy="92" r="8" fill="#B8B2AC"/><path d="M208 84v16M200 92h16" stroke="#555" stroke-width="2"/></g>
-</svg>
-    <span class="ph-badge image-badge">Illustrative image, not a photo of Oks Cars&#39; units</span>
+    <img src="img/listings/vios-600.webp" srcset="img/listings/vios-600.webp 600w, img/listings/vios-1200.webp 1200w" sizes="(min-width: 1040px) 380px, (min-width: 680px) 46vw, 92vw" width="600" height="450" alt="Illustrative photo of a red sedan similar to a Toyota Vios" loading="lazy" decoding="async">
+    <span class="ph-badge image-badge">Illustrative photo, not the actual unit</span>
   </div>
   <div class="listing__body">
     <p class="listing__meta"><span class="chip-static">Second-hand</span><span class="chip-static">Sedan</span></p>
@@ -199,17 +211,8 @@
 </article><article class="listing reveal" style="--d: 0.16s" data-tilt data-condition="Brand-new" data-body="Hatchback" aria-labelledby="l-wigo">
   <div class="listing__art">
     <span class="badge-sample">Sample listing</span>
-    
-<svg class="carart " viewBox="0 0 280 110" aria-hidden="true" focusable="false">
-  <ellipse cx="140" cy="102" rx="120" ry="6" fill="#000" opacity=".45"/>
-  <path d="M18 78c0-9 5-14 14-16l30-6 26-22c6-5 12-7 20-7h46c12 0 20 6 26 16l14 24c7 2 12 6 12 13v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H23c-3 0-5-2-5-5z" fill="#DCD9D5"/>
-  <path d="M18 78c0-9 5-14 14-16l30-6 26-22c6-5 12-7 20-7h46c12 0 20 6 26 16l14 24c7 2 12 6 12 13v9c0 3-2 5-5 5h-14a20 20 0 0 0-40 0H84a20 20 0 0 0-40 0H23c-3 0-5-2-5-5z" fill="url(#carsheen)" opacity=".55"/>
-  <path d="M98 38h36v20H74zM142 38h22c8 0 12 4 16 10l6 10h-44z" fill="#120C0C" opacity=".85"/>
-  <path d="M22 70h14" stroke="#E9CC8E" stroke-width="4" stroke-linecap="round"/>
-  <g class="carart__wheel" style="transform-origin:64px 92px"><circle cx="64" cy="92" r="15" fill="#050404"/><circle cx="64" cy="92" r="8" fill="#B8B2AC"/><path d="M64 84v16M56 92h16" stroke="#555" stroke-width="2"/></g>
-  <g class="carart__wheel" style="transform-origin:208px 92px"><circle cx="208" cy="92" r="15" fill="#050404"/><circle cx="208" cy="92" r="8" fill="#B8B2AC"/><path d="M208 84v16M200 92h16" stroke="#555" stroke-width="2"/></g>
-</svg>
-    <span class="ph-badge image-badge">Illustrative image, not a photo of Oks Cars&#39; units</span>
+    <img src="img/listings/wigo-600.webp" srcset="img/listings/wigo-600.webp 600w, img/listings/wigo-1200.webp 1200w" sizes="(min-width: 1040px) 380px, (min-width: 680px) 46vw, 92vw" width="600" height="450" alt="Illustrative photo of a white hatchback similar to a Toyota Wigo" loading="lazy" decoding="async">
+    <span class="ph-badge image-badge">Illustrative photo, not the actual unit</span>
   </div>
   <div class="listing__body">
     <p class="listing__meta"><span class="chip-static">Brand-new</span><span class="chip-static">Hatchback</span></p>
@@ -331,6 +334,6 @@
   <a class="btn btn--gold" href="https://www.facebook.com/profile.php?id=100063768174483" target="_blank" rel="noopener" aria-label="Message us on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.5C6.6 2.5 2.5 6.4 2.5 11.6c0 2.7 1.1 5 3 6.6v3.3l3-1.7c1.1.3 2.3.5 3.5.5 5.4 0 9.5-3.9 9.5-9.1S17.4 2.5 12 2.5zm1 12.2-2.4-2.6-4.7 2.6 5.2-5.5 2.5 2.6 4.6-2.6z"/></svg>Message</a>
   <a class="btn btn--ghost" href="financing.html#calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11v6M8 15h2M12 15h2M8 18h2M12 18h2"/></svg>Estimate</a>
 </nav>
-<script src="js/site.js?v=1d5b0b0d" defer></script>
+<script src="js/site.js?v=3a2798fb" defer></script>
 </body>
 </html>

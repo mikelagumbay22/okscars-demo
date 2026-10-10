@@ -503,7 +503,8 @@ def export_site(built: Path, dist: Path, c):
         if not re.search(r'<meta name="robots" content="noindex[^"]*">', html):
             problems.append(f"{page}: missing noindex meta")
         html = re.sub(r"<!--(?!\[if).*?-->", "", html, flags=re.S)
-        for ref in _RefParser(html).refs + re.findall(r'\bposter="([^"]+)"', html):
+        lazy = re.findall(r'\bdata-src="([^"]+)"', html) + [u.split()[0] for ss in re.findall(r'\bdata-srcset="([^"]+)"', html) for u in ss.split(",")]
+        for ref in _RefParser(html).refs + re.findall(r'\bposter="([^"]+)"', html) + lazy:
             if site_url and ref.startswith(site_url):
                 ref = ref[len(site_url):]           # absolute og:image/og:url on our own site -> local file
             if ref.startswith("/") and not ref.startswith("//"):
@@ -734,6 +735,11 @@ def main():
     if (out / "fonts").exists():
         shutil.rmtree(out / "fonts")
     shutil.copytree(SRC / "fonts", out / "fonts")
+    for sub in ("hero", "listings"):               # hero stage/part WebPs + sample-listing photos (pre-sized)
+        if (assets / sub).is_dir():
+            if (out / "img" / sub).exists():
+                shutil.rmtree(out / "img" / sub)
+            shutil.copytree(assets / sub, out / "img" / sub)
     hv = (c.get("hero_video") or {}).get("file")
     if hv and (assets / Path(hv).name).is_file():   # hero loop (already ffmpeg-compressed in ../assets)
         (out / "img").mkdir(parents=True, exist_ok=True)

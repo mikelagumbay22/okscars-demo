@@ -1,23 +1,55 @@
 {% extends "base.html.j2" %}
-{% from "partials/macros.html.j2" import icon, media, hero_scene, contact_buttons, listing_card, steps_list, road_divider, package_panel with context %}
+{% from "partials/macros.html.j2" import icon, media, contact_buttons, listing_card, steps_list, road_divider, package_panel with context %}
 {% block content %}
-<section class="hero" aria-labelledby="hero-title">
-  <div class="container hero__grid">
-    <div class="hero__copy">
+{%- set parts = [
+  {"id": "wheel-f", "file": "part-wheel", "w": 360, "h": 360, "x": 39.8, "y": 64.1, "size": 14, "from": "-130vw,4vh", "start": 0.14, "end": 0.30, "spin": 1, "alt": "gold alloy wheel"},
+  {"id": "wheel-r", "file": "part-wheel", "w": 360, "h": 360, "x": 82.2, "y": 60.5, "size": 12, "from": "-150vw,4vh", "start": 0.18, "end": 0.34, "spin": 1, "desk": 1},
+  {"id": "spoiler", "file": "part-spoiler", "w": 560, "h": 356, "x": 83, "y": 30, "size": 15, "from": "30vw,-90vh", "start": 0.40, "end": 0.54},
+  {"id": "skirt", "file": "part-side-skirt", "w": 900, "h": 276, "x": 61, "y": 71.5, "size": 31, "from": "130vw,0vh", "start": 0.46, "end": 0.60, "desk": 1},
+  {"id": "exhaust", "file": "part-exhaust", "w": 240, "h": 258, "x": 90.5, "y": 65.5, "size": 4.5, "from": "90vw,40vh", "start": 0.52, "end": 0.64, "desk": 1}
+] %}
+<section class="uphero" aria-labelledby="hero-title" data-uphero>
+  <div class="uphero__sticky">
+    <ol class="uphero__steps" aria-label="Car upgrade stages">
+      <li data-step="0" aria-current="step"><span>Stock</span></li><li aria-hidden="true" class="uphero__arrow">→</li>
+      <li data-step="1"><span>Upgraded</span></li><li aria-hidden="true" class="uphero__arrow">→</li>
+      <li data-step="2"><span>Supercar</span></li>
+    </ol>
+    <div class="uphero__stage" role="img" aria-label="Illustration: a plain silver sedan upgraded step by step into a red, black and gold sports sedan with gold wheels and a rear wing">
+      <img class="uphero__car uphero__car--1" src="img/hero/stage-1-1600.webp" srcset="img/hero/stage-1-900.webp 900w, img/hero/stage-1-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" fetchpriority="high" decoding="async">
+      <img class="uphero__car uphero__car--2" data-srcset="img/hero/stage-2-900.webp 900w, img/hero/stage-2-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" decoding="async">
+      <img class="uphero__car uphero__car--3" data-srcset="img/hero/stage-3-900.webp 900w, img/hero/stage-3-1600.webp 1600w" sizes="(min-width: 900px) 78vw, 100vw" width="1600" height="905" alt="" decoding="async">
+      {%- for p in parts %}
+      <div class="uphero__part{% if p.desk %} uphero__part--desk{% endif %}" data-part data-from="{{ p.from }}" data-start="{{ p.start }}" data-end="{{ p.end }}"{% if p.spin %} data-spin{% endif %} style="left: {{ p.x }}%; top: {{ p.y }}%; width: {{ p.size }}%" aria-hidden="true">
+        <img class="uphero__ghost" data-src="img/hero/{{ p.file }}.webp" width="{{ p.w }}" height="{{ p.h }}" alt="" decoding="async">
+        <img class="uphero__ghost" data-src="img/hero/{{ p.file }}.webp" width="{{ p.w }}" height="{{ p.h }}" alt="" decoding="async">
+        <img class="uphero__sprite" data-src="img/hero/{{ p.file }}.webp" width="{{ p.w }}" height="{{ p.h }}" alt="" decoding="async">
+        <span class="uphero__flash"></span>
+      </div>
+      {%- endfor %}
+    </div>
+    <span class="ph-badge image-badge uphero__badge">{{ c.meta.image_badge }}</span>
+    <div class="uphero__copy">
       <p class="eyebrow">Antipolo, Rizal · Car dealership & auto financing</p>
       <h1 id="hero-title"><span class="gold-text">Where approval stories</span> are made</h1>
       <p class="lead">Quality brand-new and second-hand cars, checked by our mechanic, with fast financing approval through 10+ bank partners. Sulit na, walang hassle pa.</p>
       <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="{{ page_href.financing }}">{{ icon("bolt") }}Tara, apply na!</a>
-        <a class="btn btn--ghost btn--lg" href="{{ page_href.cars }}">{{ icon("car") }}See cars for sale</a>
+        <a class="btn btn--primary btn--lg" href="tel:{{ b.phone_e164 }}">{{ icon("phone") }}Call {{ b.phone_display }}</a>
+        <a class="btn btn--gold btn--lg" href="{{ b.facebook_url }}" target="_blank" rel="noopener">{{ icon("messenger") }}Message us on Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="btn btn--ghost btn--lg" href="{{ page_href.financing }}">{{ icon("bolt") }}Tara, apply na!</a>
       </div>
-      <ul class="stats">
-        <li><span class="stats__num" data-count="1000" data-suffix="+">1000+</span><span class="stats__lbl">happy clients</span></li>
-        <li><span class="stats__num" data-count="10" data-suffix="+">10+</span><span class="stats__lbl">bank partners</span></li>
-        <li><span class="stats__num">{{ b.facebook_followers }}</span><span class="stats__lbl">followers on Facebook</span></li>
-      </ul>
     </div>
-    <div class="hero__art">{{ hero_scene() }}</div>
+    <p class="uphero__hint" aria-hidden="true">Scroll to upgrade ↓</p>
+  </div>
+</section>
+
+<section class="statbar" aria-label="Oks Cars in numbers">
+  <div class="container">
+    <ul class="stats">
+      <li><span class="stats__num" data-count="1000" data-suffix="+">1000+</span><span class="stats__lbl">happy clients</span></li>
+      <li><span class="stats__num" data-count="10" data-suffix="+">10+</span><span class="stats__lbl">bank partners</span></li>
+      <li><span class="stats__num">{{ b.facebook_followers }}</span><span class="stats__lbl">followers on Facebook</span></li>
+    </ul>
   </div>
 </section>
 
