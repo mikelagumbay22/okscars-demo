@@ -415,6 +415,12 @@ p { margin: 0 0 1em; }
 .owner-form input, .owner-form select { font: inherit; padding: .65rem .8rem; border-radius: 10px; border: 1px solid #8C663F; background: var(--ok-black); color: var(--ok-text); min-height: 44px; }
 .owner-form input[type="file"] { padding: .5rem; }
 .owner-form [aria-invalid="true"] { border-color: var(--ok-red-hi); }
+.field-row { display: grid; gap: 0 1rem; grid-template-columns: 1fr 1fr; }
+@media (max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
+.field__opt { font-weight: 400; color: var(--ok-muted); font-size: .88em; }
+.owner-car .listing__specs { margin: 0; font-size: .85rem; }
+.owner-car__foot { flex-wrap: wrap; }
+.owner-car__text { display: grid; gap: .3rem; min-width: 0; flex: 1 1 10rem; }
 .field__hint { margin: 0; color: var(--ok-muted); font-size: .88rem; }
 .field__err { margin: 0; color: #FF9C94; font-weight: 600; font-size: .9rem; }
 .owner-status { min-height: 1.5em; margin: .8rem 0 0; font-weight: 600; }

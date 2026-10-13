@@ -12,7 +12,9 @@
    "body": "Sedan",
    "trans": "Automatic",
    "fuel": "Gasoline",
-   "extra": "360° camera",
+   "features": [
+    "360° camera"
+   ],
    "alt": "Illustrative photo of a black sedan similar to a Nissan Almera",
    "img": "img/listings/almera-600.webp",
    "img2x": "img/listings/almera-1200.webp"
@@ -28,7 +30,7 @@
    "body": "Sedan",
    "trans": "Automatic",
    "fuel": "Gasoline",
-   "extra": null,
+   "features": [],
    "alt": "Illustrative photo of a red sedan similar to a Toyota Vios",
    "img": "img/listings/vios-600.webp",
    "img2x": "img/listings/vios-1200.webp"
@@ -44,7 +46,7 @@
    "body": "Hatchback",
    "trans": "Automatic",
    "fuel": "Gasoline",
-   "extra": null,
+   "features": [],
    "alt": "Illustrative photo of a white hatchback similar to a Toyota Wigo",
    "img": "img/listings/wigo-600.webp",
    "img2x": "img/listings/wigo-1200.webp"
@@ -60,7 +62,7 @@
    "body": "MPV",
    "trans": "Automatic",
    "fuel": "Gasoline",
-   "extra": null,
+   "features": [],
    "alt": "Illustrative photo of a grey MPV similar to a Mitsubishi Xpander",
    "img": "img/listings/xpander-600.webp",
    "img2x": "img/listings/xpander-1200.webp"
@@ -76,7 +78,7 @@
    "body": "SUV",
    "trans": "Automatic",
    "fuel": "Diesel",
-   "extra": null,
+   "features": [],
    "alt": "Illustrative photo of a dark brown SUV similar to a Toyota Fortuner",
    "img": "img/listings/fortuner-600.webp",
    "img2x": "img/listings/fortuner-1200.webp"
@@ -92,7 +94,7 @@
    "body": "Pickup",
    "trans": "Automatic",
    "fuel": "Diesel",
-   "extra": null,
+   "features": [],
    "alt": "Illustrative photo of a red pickup truck similar to a Ford Ranger",
    "img": "img/listings/ranger-600.webp",
    "img2x": "img/listings/ranger-1200.webp"

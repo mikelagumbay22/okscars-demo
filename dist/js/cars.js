@@ -44,8 +44,14 @@
       '<div class="car-card__top"><img class="car-card__logo" src="' + esc(o.logo) + '" width="40" height="40" alt="Oks Cars logo" decoding="async"><span class="car-card__phone">' + esc(o.phone) + '</span><span class="badge-sample">' + (c.upload ? "Owner demo" : "Sample listing") + "</span></div>" + stamp +
       '<div class="car-card__bottom">' + (badge ? '<span class="ph-badge image-badge">' + esc(badge) + "</span>" : "") + "<" + tag + ' class="car-card__title"' + hid + ">" + t + "</" + tag + "></div></div>";
   }
+  // Dot-separated spec line: condition, body type, transmission, fuel, then features (array; legacy "extra" string too).
+  function specList(c) {
+    var f = Array.isArray(c.features) ? c.features : (c.extra ? [c.extra] : []);
+    var items = [c.condition, c.body, c.trans, c.fuel].concat(f).filter(function (x) { return x && String(x).trim(); });
+    return items.length ? '<ul class="listing__specs" aria-label="Details">' + items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : "";
+  }
   function statusBadge(s) { return s ? '<span class="status-badge status-badge--' + s.toLowerCase() + '">' + esc(s) + "</span>" : ""; }
-  window.OksCars = { KEY: KEY, esc: esc, load: load, save: save, isEmpty: isEmpty, merged: merged, fetchSeed: fetchSeed, title: title, statusBadge: statusBadge, cardArt: cardArt, cleanStatus: cleanStatus };
+  window.OksCars = { KEY: KEY, esc: esc, load: load, save: save, isEmpty: isEmpty, merged: merged, fetchSeed: fetchSeed, title: title, statusBadge: statusBadge, cardArt: cardArt, specList: specList, cleanStatus: cleanStatus };
 
   // ---------- cars-for-sale.html: re-render the cards from seed + local overrides ----------
   var wrap = document.querySelector("[data-listings]");
@@ -57,11 +63,9 @@
     var cfg = { badge: badge, logo: wrap.getAttribute("data-logo"), phone: wrap.getAttribute("data-phone") };
     wrap.innerHTML = cars.map(function (c, i) {
       var t = title(c), hid = "l-" + c.id;
-      var chips = (c.condition ? '<span class="chip-static">' + esc(c.condition) + "</span>" : "") + (c.body ? '<span class="chip-static">' + esc(c.body) + "</span>" : "");
-      var specs = [c.trans, c.fuel, c.extra].filter(Boolean).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
       return '<article class="listing reveal is-in" style="--d: ' + ((i % 3) * 0.08) + 's" data-id="' + esc(c.id) + '" data-condition="' + esc(c.condition || "") + '" data-body="' + esc(c.body || "") + '" aria-labelledby="' + esc(hid) + '">' +
         cardArt(c, Object.assign({ headingId: hid }, cfg)) +
-        '<div class="listing__body">' + (chips ? '<p class="listing__meta">' + chips + "</p>" : "") + (specs ? '<ul class="listing__specs">' + specs + "</ul>" : "") +
+        '<div class="listing__body">' + specList(c) +
         '<p class="listing__price">Ask for price</p><div class="btn-row"><a class="btn btn--gold btn--sm" href="financing.html#calc">Estimate monthly</a><a class="btn btn--ghost btn--sm" href="' + esc(fb) + '" target="_blank" rel="noopener">Inquire<span class="visually-hidden"> about the ' + esc(t) + " on Facebook (opens in a new tab)</span></a></div></div></article>";
     }).join("");
     var count = document.querySelector("[data-filter-count]");

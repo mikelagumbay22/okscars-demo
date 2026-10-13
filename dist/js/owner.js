@@ -147,17 +147,20 @@
     list.innerHTML = cars.map(function (c) {
       var t = S.esc(S.title(c)), origin = c.seed ? (c.edited ? "Sample listing, edited here" : "Sample listing") : "Added in this browser";
       return '<li class="owner-car" data-id="' + S.esc(c.id) + '">' + S.cardArt(c, cardCfg) +
-        '<div class="owner-car__foot"><p class="owner-car__origin">' + origin + (c.status ? "" : " · No status") + "</p>" +
+        '<div class="owner-car__foot"><div class="owner-car__text">' + S.specList(c) + '<p class="owner-car__origin">' + origin + (c.status ? "" : " · No status") + "</p></div>" +
         '<div class="owner-car__actions"><button type="button" class="icon-btn" data-edit aria-label="Edit ' + t + '">' + PEN + '</button>' +
         '<button type="button" class="icon-btn icon-btn--danger" data-delete aria-label="Delete ' + t + '">' + BIN + "</button></div></div></li>";
     }).join("");
   }
   function resetForm() {
-    form.reset(); form.id.value = ""; ["year", "make", "model", "photo"].forEach(function (n) { setErr(n, ""); });
+    form.reset(); form.id.value = ""; form.condition.value = "Second-hand";
     $("[data-form-title]").textContent = "Add a car"; $("[data-submit-label]").textContent = "Save car and make post"; $("[data-cancel-edit]").hidden = true;
   }
   function startEdit(c) {
     resetForm(); form.id.value = c.id; form.year.value = c.year || ""; form.make.value = c.make || ""; form.model.value = c.model || ""; form.status.value = c.status || "";
+    form.condition.value = c.condition === "Brand-new" ? "Brand-new" : "Second-hand";
+    form.body.value = c.body || ""; form.trans.value = c.trans || ""; form.fuel.value = c.fuel || "";
+    form.features.value = (Array.isArray(c.features) ? c.features : (c.extra ? [c.extra] : [])).join(", ");
     $("[data-form-title]").textContent = "Edit " + S.title(c); $("[data-submit-label]").textContent = "Save changes and remake post"; $("[data-cancel-edit]").hidden = false;
     makePost(c).catch(function () {});
     say("Editing " + S.title(c) + ". Choose a new photo only if you want to replace it."); form.year.focus();
@@ -208,12 +211,23 @@
       }
       var car = { year: +form.year.value, make: form.make.value.trim(), model: form.model.value.trim(), status: S.cleanStatus(form.status.value) };
       car.name = car.make + " " + car.model;
+      car.condition = form.condition.value === "Brand-new" ? "Brand-new" : "Second-hand";
+      car.body = form.body.value; car.trans = form.trans.value; car.fuel = form.fuel.value;
+      car.features = form.features.value.split(",").map(function (f) { return f.trim().replace(/\s+/g, " ").slice(0, 40); }).filter(Boolean).slice(0, 6);
       var st = S.load(), newId = id || "local-" + Date.now().toString(36), had = st.over[newId];
       var rec = Object.assign({}, had || {}, car, { id: newId, updated: Date.now() });
-      delete rec.image; delete rec.source;
+      delete rec.image; delete rec.source; delete rec.extra;
+      var base = prev && prev.seed ? seed.filter(function (k) { return k.id === newId; })[0] : null;
+      if (base) {
+        Object.keys(car).forEach(function (k) {
+          var sv = base[k] == null ? "" : base[k], nv = car[k] == null ? "" : car[k];
+          if (JSON.stringify(sv) === JSON.stringify(nv)) delete rec[k];
+        });
+      }
       if (up) rec.upload = up.url;
       if (!prev) rec.created = Date.now();
-      st.over[newId] = rec;
+      if (base && Object.keys(rec).every(function (k) { return k === "id" || k === "updated"; })) delete st.over[newId];
+      else st.over[newId] = rec;
       var err = S.save(st);
       if (err) {
         var full = err && (err.name === "QuotaExceededError" || err.code === 22 || err.code === 1014);
