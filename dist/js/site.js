@@ -216,8 +216,8 @@
   var fwrap = document.querySelector("[data-filters]");
   if (fwrap) {
     var state = { condition: "all", body: "all" };
-    var cards = document.querySelectorAll(".listing");
     var countOut = document.querySelector("[data-filter-count]"), empty = document.querySelector("[data-filter-empty]");
+    document.addEventListener("okscars:listings", function () { state.condition = "all"; state.body = "all"; });
     fwrap.addEventListener("click", function (e) {
       var btn = e.target.closest(".chip");
       if (!btn) return;
@@ -225,7 +225,7 @@
       state[key] = btn.getAttribute("data-value");
       fwrap.querySelectorAll('.chip[data-filter="' + key + '"]').forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
       var n = 0;
-      cards.forEach(function (card) {
+      document.querySelectorAll("[data-listings] .listing").forEach(function (card) {
         var ok = (state.condition === "all" || card.getAttribute("data-condition") === state.condition) &&
                  (state.body === "all" || card.getAttribute("data-body") === state.body);
         card.hidden = !ok;
