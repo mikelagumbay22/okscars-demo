@@ -25,7 +25,7 @@
       </div>
       <p class="filters__count" aria-live="polite" data-filter-count>Showing {{ c.listings | length }} sample listings</p>
     </div>
-    <div class="listings">{% for l in c.listings %}{{ listing_card(l, loop.index0) }}{% endfor %}</div>
+    <div class="listings" data-listings data-badge="{{ c.meta.listing_photo_badge }}" data-fb="{{ b.facebook_url }}" data-logo="{{ files.logo.src }}" data-phone="{{ b.phone_display }}">{% for l in c.listings %}{{ listing_card(l, loop.index0) }}{% endfor %}</div>
     <p class="filters__empty" data-filter-empty hidden>No sample listings match. Try another filter, or message us for what's available.</p>
     <p class="note">{{ c.listing_note }}</p>
   </div>
@@ -34,3 +34,4 @@
   <h2 id="cars-cta">Looking for a specific unit?</h2><p>Tell us what you need and your budget. We'll check what's available.</p>{{ contact_buttons("center") }}
 </div></section>
 {% endblock %}
+{% block scripts %}<script src="js/cars.js?v={{ build_id }}" defer></script>{% endblock %}

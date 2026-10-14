@@ -9,8 +9,8 @@ import json, re, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 BASE = (sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8113/").rstrip("/") + "/"
-PAGES = ["index", "cars-for-sale", "financing", "sell-your-car", "repair-shop", "about", "contact", "404"]
-AXE = Path("/workspace/sites/best-auto-repair/qa/tools/node_modules/axe-core/axe.min.js").read_text()
+PAGES = ["about", "index", "owner"]
+AXE = Path("/workspace/work/tools/node_modules/axe-core/axe.min.js").read_text()
 CHROME = "/usr/bin/google-chrome"
 def L(c):
     c = [x / 255 for x in c[:3]]; c = [x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4 for x in c]

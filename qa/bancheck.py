@@ -55,7 +55,7 @@ ok("Antipolo, Rizal" in con and "<iframe" not in con, "location city only, no ma
 ok(not re.search(r"\b\d+(\.\d+)?\s?% (?:interest|add-on)", vis, re.I), "no rate presented as theirs")
 ok((D / ".nojekyll").exists(), ".nojekyll present")
 ok(not (D / "img/logo.svg").exists() and not (D / "img/logo.png").exists() and not (D / "img/favicon-512.png").exists(), "old made-up logo files gone")
-ok(all('class="brand__logo" src="img/logo-96.png"' in p.read_text() and 'width="56" height="56"' in p.read_text() for p in pages), "real logo in header on every page (sized)")
+ok(all('class="brand__logo" src="img/logo-wide-84.png"' in p.read_text() and 'width="84" height="56"' in p.read_text() for p in pages), "real logo in header on every page (sized)")
 ok(all('rel="manifest" href="img/site.webmanifest"' in p.read_text() for p in pages), "manifest linked on every page")
 ok("Illustrative" not in re.sub(r'<div class="(media|listing__art).*?</div>', "", idx, flags=re.S).split('class="site-header"')[1].split("</header>")[0], "logo not badged as illustrative")
 for f in pages:

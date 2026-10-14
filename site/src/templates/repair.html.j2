@@ -3,10 +3,42 @@
 {% block content %}
 <section class="page-hero" aria-labelledby="page-title">
   <div class="container section-head">
-    <p class="eyebrow">Repair shop · Antipolo, Rizal</p>
+    <p class="eyebrow">OKS Autoworks · Auto repair shop · Antipolo, Rizal</p>
     <h1 id="page-title">Car check-ups and repairs in Antipolo</h1>
     <p class="lead">The same mechanic who checks every unit we sell can look after your car too. Call to ask or book.</p>
     {{ contact_buttons() }}
+  </div>
+</section>
+{%- set aw = c.autoworks %}
+<section class="section section--tight" aria-labelledby="aw-title">
+  <div class="container">
+    <div class="aw-brand reveal">
+      <h2 id="aw-title" class="aw-logo"><span class="aw-logo__a">{{ aw.name_a }}</span> <span class="aw-logo__b">{{ aw.name_b }}</span><span class="aw-logo__sub">{{ aw.sub }}</span></h2>
+      <p class="aw-tagline">{{ aw.tagline }} <span class="aw-tagline__2">{{ aw.tagline2 }}.</span></p>
+    </div>
+    <div class="pms reveal">
+      <p class="pms__title" aria-hidden="true">PMS (preventive maintenance service) package prices, in Philippine pesos (₱)</p>
+      <div class="pms__scroll" role="region" aria-labelledby="pms-cap" tabindex="0">
+        <table class="pms__table">
+          <caption class="visually-hidden" id="pms-cap">PMS (preventive maintenance service) package prices, in Philippine pesos (₱)</caption>
+          <thead><tr><th scope="col">Package</th>{% for col in aw.cols %}<th scope="col">{{ col }}</th>{% endfor %}</tr></thead>
+          {%- for g in aw.groups %}
+          <tbody>
+            <tr class="pms__group"><th scope="rowgroup" colspan="{{ aw.cols | length + 1 }}">{{ g.name }}</th></tr>
+            {%- for r in g.rows %}
+            <tr><th scope="row">{{ g.name }}, <span class="pms__oil">{{ r.label | lower }}</span></th>
+              {%- for pr in r.prices %}<td data-col="{{ aw.cols[loop.index0] }}">{% if pr %}₱{{ pr }}{% else %}<span aria-hidden="true">—</span><span class="visually-hidden">Not offered</span>{% endif %}</td>{% endfor %}</tr>
+            {%- endfor %}
+          </tbody>
+          {%- endfor %}
+        </table>
+      </div>
+      <p class="pms__hint" aria-hidden="true">Swipe the table sideways to see all vehicle types.</p>
+      <p class="note">{{ aw.note }}</p>
+    </div>
+    <ul class="aw-features" aria-label="Why OKS Autoworks">
+      {%- for f in aw.features %}<li class="reveal" style="--d: {{ loop.index0 * 0.08 }}s"><span aria-hidden="true">{{ icon(f.icon) }}</span>{{ f.text }}</li>{% endfor %}
+    </ul>
   </div>
 </section>
 <section class="section section--tight" aria-labelledby="svc-title">

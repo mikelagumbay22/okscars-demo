@@ -2,7 +2,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="{{ page_href.home }}"{% if page.id == 'home' %} aria-current="page"{% endif %}>
-      <picture><source type="image/webp" srcset="{{ files.logo_webp.src }} 96w, {{ files.logo_192_webp.src }} 192w" sizes="56px"><img class="brand__logo" src="{{ files.logo.src }}" srcset="{{ files.logo.src }} 96w, {{ files.logo_192.src }} 192w" sizes="56px" alt="{{ b.name }}, home" width="56" height="56"></picture><span class="brand__name" aria-hidden="true"><b>Oks Cars</b><small>Auto Financing</small></span>
+      <picture><source type="image/webp" srcset="{{ files.logo_wide_84_webp.src }} 1x, {{ files.logo_wide_168_webp.src }} 2x"><img class="brand__logo" src="{{ files.logo_wide_84.src }}" srcset="{{ files.logo_wide_84.src }} 1x, {{ files.logo_wide_168.src }} 2x" alt="{{ b.name }}, home" width="84" height="56"></picture>
     </a>
     <nav class="site-nav desktop-nav" aria-label="Main">
       <ul>

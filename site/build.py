@@ -520,6 +520,13 @@ def export_site(built: Path, dist: Path, c):
                     needed.add(u[len(site_url):].split("#")[0].split("?")[0])
         (dist / page).write_text(html, encoding="utf-8")
 
+    if (built / "data").is_dir():                     # fetched by JS (not an href/src), so copy it explicitly
+        if (dist / "data").exists():
+            shutil.rmtree(dist / "data")
+        shutil.copytree(built / "data", dist / "data")
+        for js in ("cars.js", "owner.js"):
+            if (built / "js" / js).is_file():
+                needed.add(f"js/{js}")
     for ref in sorted(p for p in needed if p.endswith(".css")):
         css = (built / ref).read_text(encoding="utf-8")
         for u in re.findall(r"url\(\s*['\"]?([^'\")]+)['\"]?\s*\)", css):
@@ -731,11 +738,17 @@ def main():
     css = Path(args.theme).read_text(encoding="utf-8") + "\n" + (SRC / "styles.css").read_text(encoding="utf-8")
     (out / "css" / "site.css").write_text(css, encoding="utf-8")
     (out / "js").mkdir(parents=True, exist_ok=True)
-    shutil.copy2(SRC / "js" / "site.js", out / "js" / "site.js")
+    for js in sorted((SRC / "js").glob("*.js")):    # site.js + cars.js (listing store) + owner.js (demo owner page)
+        shutil.copy2(js, out / "js" / js.name)
+    # Public seed data for the listing store: cars-for-sale.html and owner.html fetch data/cars.json and merge localStorage.
+    (out / "data").mkdir(parents=True, exist_ok=True)
+    seed = [{k: l.get(k) for k in ("id", "year", "make", "model", "name", "status", "condition", "body", "trans", "fuel", "features", "alt")}
+            | {"img": f"img/listings/{l['photo']}-600.webp", "img2x": f"img/listings/{l['photo']}-1200.webp"} for l in c["listings"]]
+    (out / "data" / "cars.json").write_text(json.dumps({"version": 1, "cars": seed}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     if (out / "fonts").exists():
         shutil.rmtree(out / "fonts")
     shutil.copytree(SRC / "fonts", out / "fonts")
-    for sub in ("hero", "listings"):               # hero stage/part WebPs + sample-listing photos (pre-sized)
+    for sub in ("hero", "listings", "handover"):             # hero stage/part WebPs + sample-listing photos (pre-sized)
         if (assets / sub).is_dir():
             if (out / "img" / sub).exists():
                 shutil.rmtree(out / "img" / sub)

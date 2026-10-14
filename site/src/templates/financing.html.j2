@@ -9,8 +9,20 @@
     <p class="lead">We help you apply through 10+ bank partners, with low down payment options. {{ c.promo.text }} <span class="promo__note">({{ c.promo.note }})</span>.</p>
   </div>
 </section>
+{%- set fp = c.fin_process %}
 <section class="section section--tight" aria-labelledby="steps-title">
-  <div class="container"><h2 id="steps-title" class="reveal">How it works</h2>{{ steps_list(c.fin_steps) }}</div>
+  <div class="container">
+    <div class="section-head reveal"><h2 id="steps-title">{{ fp.heading }}</h2><p class="lead">{{ fp.intro }}</p></div>
+    <ol class="fin-steps">
+      {%- for st in fp.steps %}
+      <li class="fin-step reveal" style="--d: {{ (loop.index0 % 3) * 0.1 }}s">
+        <div class="fin-step__head"><span class="fin-step__n" aria-hidden="true">{{ "%02d" | format(loop.index) }}</span><span class="fin-step__icon" aria-hidden="true">{{ icon(st.icon) }}</span></div>
+        <h3><span class="visually-hidden">Step {{ loop.index }}: </span>{{ st.title }}</h3>
+        <p>{{ st.text }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
 </section>
 
 <section class="section section--panel" id="calc" aria-labelledby="calc-title">

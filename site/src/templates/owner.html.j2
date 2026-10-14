@@ -1,0 +1,59 @@
+{% extends "base.html.j2" %}
+{% from "partials/macros.html.j2" import icon with context %}
+{% block content %}
+{#- Demo-only owner page: not in the nav, footer or sitemap. All data stays in this browser (localStorage). -#}
+<link rel="preload" as="image" href="{{ files.logo_512_webp.src }}">
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container section-head">
+    <p class="eyebrow">Owner mode · Demo only</p>
+    <h1 id="page-title">Post a car for sale</h1>
+    <p class="lead">Add a car with its photo. It shows on the Cars for sale page, and you can download a square 1080 × 1080 post image for Facebook.</p>
+  </div>
+</section>
+<section class="section section--tight" aria-labelledby="form-title">
+  <div class="container">
+    <div class="owner-note" role="note">{{ icon("info") }}<p><strong>Demo mode.</strong> Everything you add here is saved only in this browser, on this device. Nothing is uploaded or sent anywhere, and other visitors won't see your changes. Clearing your browser data, or the Reset button below, removes it.</p></div>
+    <div class="owner-grid">
+      <form class="owner-form" data-owner-form novalidate aria-labelledby="form-title">
+        <h2 id="form-title" data-form-title>Add a car</h2>
+        <input type="hidden" name="id" value="">
+        <div class="field"><label for="o-year">Year</label><input id="o-year" name="year" type="number" inputmode="numeric" min="1980" max="2030" step="1" required aria-describedby="o-year-err"><p class="field__err" id="o-year-err" data-err="year" hidden></p></div>
+        <div class="field"><label for="o-make">Make</label><input id="o-make" name="make" type="text" maxlength="40" autocomplete="off" required placeholder="e.g. Toyota" aria-describedby="o-make-err"><p class="field__err" id="o-make-err" data-err="make" hidden></p></div>
+        <div class="field"><label for="o-model">Model</label><input id="o-model" name="model" type="text" maxlength="60" autocomplete="off" required placeholder="e.g. Vios 1.3 XLE CVT" aria-describedby="o-model-err"><p class="field__err" id="o-model-err" data-err="model" hidden></p></div>
+        <div class="field-row">
+          <div class="field"><label for="o-condition">Condition</label><select id="o-condition" name="condition"><option value="Second-hand" selected>Second-hand</option><option value="Brand-new">Brand-new</option></select></div>
+          <div class="field"><label for="o-body">Body type <span class="field__opt">(optional)</span></label><select id="o-body" name="body"><option value="">— None —</option>{% for t in ["Sedan", "Hatchback", "MPV", "SUV", "Pickup"] %}<option value="{{ t }}">{{ t }}</option>{% endfor %}</select></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="o-trans">Transmission <span class="field__opt">(optional)</span></label><select id="o-trans" name="trans"><option value="">— None —</option><option value="Automatic">Automatic</option><option value="Manual">Manual</option></select></div>
+          <div class="field"><label for="o-fuel">Fuel <span class="field__opt">(optional)</span></label><select id="o-fuel" name="fuel"><option value="">— None —</option><option value="Gasoline">Gasoline</option><option value="Diesel">Diesel</option></select></div>
+        </div>
+        <div class="field"><label for="o-features">Extra features <span class="field__opt">(optional)</span></label><input id="o-features" name="features" type="text" maxlength="200" autocomplete="off" placeholder="e.g. 360° camera, push start" aria-describedby="o-features-hint"><p class="field__hint" id="o-features-hint">Separate features with commas. Up to 6.</p></div>
+        <div class="field"><label for="o-status">Status</label><select id="o-status" name="status" aria-describedby="o-status-hint"><option value="">— None —</option><option value="Reserved">Reserved</option><option value="Sold">Sold</option></select><p class="field__hint" id="o-status-hint">Reserved or Sold adds a large diagonal stamp across the photo. None adds no stamp.</p></div>
+        <div class="field"><label for="o-photo">Car photo</label><input id="o-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="o-photo-hint o-photo-err">
+          <p class="field__hint" id="o-photo-hint" data-photo-hint>JPG, PNG or WebP, up to 15 MB. Required for a new car; optional when editing.</p><p class="field__err" id="o-photo-err" data-err="photo" hidden></p></div>
+        <div class="btn-row">
+          <button type="submit" class="btn btn--gold">{{ icon("check") }}<span data-submit-label>Save car and make post</span></button>
+          <button type="button" class="btn btn--ghost" data-cancel-edit hidden>Cancel editing</button>
+        </div>
+        <p class="owner-status" role="status" aria-live="polite" data-owner-status></p>
+      </form>
+      <section class="owner-preview" aria-labelledby="preview-title">
+        <h2 id="preview-title">Post preview</h2>
+        <div class="owner-preview__frame"><img data-preview src="" alt="" width="1080" height="1080" hidden><p class="owner-preview__empty" data-preview-empty>Save a car, or edit one below, to make its 1080 × 1080 social post here.</p></div>
+        <p class="owner-preview__meta" data-preview-meta></p>
+        <button type="button" class="btn btn--primary" data-download hidden>{{ icon("arrow") }}Download post image</button>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="section section--tight" aria-labelledby="list-title">
+  <div class="container">
+    <div class="owner-list__head"><h2 id="list-title">All cars <span class="owner-count" data-owner-count></span></h2>
+      <button type="button" class="btn btn--ghost btn--sm" data-reset>Reset demo data</button></div>
+    <ul class="owner-list" data-owner-list data-logo="{{ files.logo.src }}" data-phone="{{ b.phone_display }}" aria-labelledby="list-title"><li class="owner-list__loading">Loading cars…</li></ul>
+    <noscript><p class="note">Owner mode needs JavaScript.</p></noscript>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="js/cars.js?v={{ build_id }}" defer></script><script src="js/owner.js?v={{ build_id }}" data-logo="{{ files.logo_512_webp.src }}" data-phone="{{ b.phone_display }}" defer></script>{% endblock %}

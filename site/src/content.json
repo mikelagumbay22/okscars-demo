@@ -150,6 +150,14 @@
     "logo_192_webp": "logo-192.webp",
     "logo_512": "logo-512.png",
     "logo_512_webp": "logo-512.webp",
+    "logo_wide_84": "logo-wide-84.png",
+    "logo_wide_84_webp": "logo-wide-84.webp",
+    "logo_wide_168": "logo-wide-168.png",
+    "logo_wide_168_webp": "logo-wide-168.webp",
+    "logo_wide_108": "logo-wide-108.png",
+    "logo_wide_108_webp": "logo-wide-108.webp",
+    "logo_wide_216": "logo-wide-216.png",
+    "logo_wide_216_webp": "logo-wide-216.webp",
     "favicon": "favicon.ico",
     "favicon_png": "favicon-32.png",
     "apple_touch_icon": "apple-touch-icon.png",
@@ -157,7 +165,7 @@
     "icon_512": "icon-512.png",
     "manifest": "site.webmanifest",
     "schema_logo": "logo-512.png",
-    "_note": "The business's real logo (Facebook profile image, refs/okscars/logo-original.jpg), used as is with a circular crop. Not badged: it is their own logo."
+    "_note": "The business's real logo (John's new oval emblem, Oct 2026), cut out to the gold oval on transparent; square files letterbox it (icons on dark)."
   },
   "pages": [
     {
@@ -215,6 +223,14 @@
       "nav_label": "Contact",
       "title": "Contact Oks Cars | Call or Message Us | Antipolo, Rizal",
       "share_description": "Demo concept site: call +63 945 774 3386 or message Oks Cars Auto Financing on Facebook. Antipolo, Rizal. Not the official site."
+    },
+    {
+      "id": "owner",
+      "file": "owner.html",
+      "template": "owner.html.j2",
+      "title": "Owner mode (demo) | Oks Cars",
+      "share_description": "Demo-only owner page for the Oks Cars concept site. Data is saved only in this browser. Not the official site.",
+      "_note": "No nav_label on purpose: not linked from the nav, footer or any sitemap."
     },
     {
       "id": "notfound",
@@ -317,9 +333,14 @@
       "body": "Sedan",
       "trans": "Automatic",
       "fuel": "Gasoline",
-      "extra": "360° camera",
       "photo": "almera",
-      "alt": "Illustrative photo of a black sedan similar to a Nissan Almera"
+      "alt": "Illustrative photo of a black sedan similar to a Nissan Almera",
+      "make": "Nissan",
+      "model": "Almera 1.0 Turbo AT",
+      "status": "",
+      "features": [
+        "360° camera"
+      ]
     },
     {
       "id": "vios",
@@ -330,7 +351,11 @@
       "trans": "Automatic",
       "fuel": "Gasoline",
       "photo": "vios",
-      "alt": "Illustrative photo of a red sedan similar to a Toyota Vios"
+      "alt": "Illustrative photo of a red sedan similar to a Toyota Vios",
+      "make": "Toyota",
+      "model": "Vios 1.3 XLE CVT",
+      "status": "",
+      "features": []
     },
     {
       "id": "wigo",
@@ -341,7 +366,11 @@
       "trans": "Automatic",
       "fuel": "Gasoline",
       "photo": "wigo",
-      "alt": "Illustrative photo of a white hatchback similar to a Toyota Wigo"
+      "alt": "Illustrative photo of a white hatchback similar to a Toyota Wigo",
+      "make": "Toyota",
+      "model": "Wigo 1.0 G AT",
+      "status": "",
+      "features": []
     },
     {
       "id": "xpander",
@@ -352,7 +381,11 @@
       "trans": "Automatic",
       "fuel": "Gasoline",
       "photo": "xpander",
-      "alt": "Illustrative photo of a grey MPV similar to a Mitsubishi Xpander"
+      "alt": "Illustrative photo of a grey MPV similar to a Mitsubishi Xpander",
+      "make": "Mitsubishi",
+      "model": "Xpander GLS AT",
+      "status": "",
+      "features": []
     },
     {
       "id": "fortuner",
@@ -363,7 +396,11 @@
       "trans": "Automatic",
       "fuel": "Diesel",
       "photo": "fortuner",
-      "alt": "Illustrative photo of a dark brown SUV similar to a Toyota Fortuner"
+      "alt": "Illustrative photo of a dark brown SUV similar to a Toyota Fortuner",
+      "make": "Toyota",
+      "model": "Fortuner 2.4 G 4x2 AT",
+      "status": "",
+      "features": []
     },
     {
       "id": "ranger",
@@ -374,7 +411,11 @@
       "trans": "Automatic",
       "fuel": "Diesel",
       "photo": "ranger",
-      "alt": "Illustrative photo of a red pickup truck similar to a Ford Ranger"
+      "alt": "Illustrative photo of a red pickup truck similar to a Ford Ranger",
+      "make": "Ford",
+      "model": "Ranger XLT 2.2 4x2 AT",
+      "status": "",
+      "features": []
     }
   ],
   "listing_note": "Sample listings for this demo only, not Oks Cars' current inventory. Ask us for available units and prices.",
@@ -455,7 +496,86 @@
   "about": {
     "lead": "Oks Cars Auto Financing sells quality, affordable second-hand cars, plus brand-new units, in Antipolo, Rizal.",
     "p1": "Every unit passes through our mechanic before you take it home, so you know it's in good running order.",
-    "p2": "Clients trust us for fast approval, and for cars that feel almost brand new. With 10+ bank partners, we help buyers get approved nationwide."
+    "p2": "Clients trust us for fast approval, and for cars that feel almost brand new. With 10+ bank partners, we help buyers get approved nationwide.",
+    "gallery": {
+      "heading": "Unit released: our clients' handovers",
+      "intro": "Real UNIT RELEASED posters from Oks Cars, newest first.",
+      "per_page": 10,
+      "items": [
+        {
+          "file": "poster-01",
+          "model": "Subaru Forester"
+        },
+        {
+          "file": "poster-02",
+          "model": "Ford Everest"
+        },
+        {
+          "file": "poster-03",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-04",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-05",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-06",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-07",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-08",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-09",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-10",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-11",
+          "model": "Hyundai H100"
+        },
+        {
+          "file": "poster-12",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-13",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-14",
+          "model": "Toyota Vios"
+        },
+        {
+          "file": "poster-15",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-16",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-17",
+          "model": "Mitsubishi Mirage"
+        },
+        {
+          "file": "poster-18",
+          "model": "Mitsubishi Mirage"
+        }
+      ]
+    }
   },
   "reviews_ph": "[PLACEHOLDER: client reviews, word for word, with permission]",
   "socials": [
@@ -502,5 +622,123 @@
         "text": "Your own web address, e.g. okscars.ph or okscars.com"
       }
     ]
+  },
+  "fin_process": {
+    "_source": "Client graphic 'How car financing works' (Oct 13, 2026). Wording follows the image.",
+    "heading": "How car financing works",
+    "intro": "A simple 6-step process to help you get your dream car.",
+    "steps": [
+      {
+        "icon": "car",
+        "title": "Choose your car",
+        "text": "Choose the vehicle that fits your needs and budget."
+      },
+      {
+        "icon": "docs",
+        "title": "Submit requirements",
+        "text": "Prepare and submit the required documents."
+      },
+      {
+        "icon": "filecheck",
+        "title": "Financing application",
+        "text": "Your application will be processed for financing."
+      },
+      {
+        "icon": "shield",
+        "title": "Wait for approval",
+        "text": "Approval usually takes 1–3 days."
+      },
+      {
+        "icon": "cash",
+        "title": "Complete payment & documents",
+        "text": "Once approved, complete the required payment and documents."
+      },
+      {
+        "icon": "car",
+        "title": "Unit release",
+        "text": "Once everything is completed, your vehicle is ready for release."
+      }
+    ]
+  },
+  "autoworks": {
+    "_source": "Client poster 'OKS Autoworks PMS package' (Oct 13, 2026). Real prices from the poster; not placeholders.",
+    "name_a": "OKS",
+    "name_b": "Autoworks",
+    "sub": "Auto Repair Shop",
+    "tagline": "Your car. Our priority.",
+    "tagline2": "Drive longer",
+    "cols": [
+      "Hatchback",
+      "Sedan",
+      "Sedan (diesel)",
+      "SUV"
+    ],
+    "groups": [
+      {
+        "name": "PMS package",
+        "rows": [
+          {
+            "label": "Semi-synthetic",
+            "prices": [
+              "2,799",
+              "2,999",
+              "4,199",
+              "4,999"
+            ]
+          },
+          {
+            "label": "Fully synthetic",
+            "prices": [
+              "3,299",
+              "3,499",
+              "4,199",
+              "5,499"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Heavy PMS package",
+        "rows": [
+          {
+            "label": "Semi-synthetic",
+            "prices": [
+              "3,799",
+              "3,999",
+              null,
+              "5,499"
+            ]
+          },
+          {
+            "label": "Fully synthetic",
+            "prices": [
+              "4,799",
+              "4,999",
+              null,
+              "5,999"
+            ]
+          }
+        ]
+      }
+    ],
+    "features": [
+      {
+        "icon": "drop",
+        "text": "Quality oil & filters"
+      },
+      {
+        "icon": "wrench",
+        "text": "Experienced technicians"
+      },
+      {
+        "icon": "gauge",
+        "text": "Fast & reliable service"
+      },
+      {
+        "icon": "shield",
+        "text": "Keep your engine healthy"
+      }
+    ],
+    "note": "Prices from the shop's poster; confirm current rates with the shop."
   }
 }

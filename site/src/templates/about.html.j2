@@ -21,6 +21,33 @@
     <div class="reveal reveal-r"><div class="photo-frame">{{ media(c.images.handover, "(min-width: 900px) 520px, 92vw", "media--wide") }}</div></div>
   </div>
 </section>
+<section class="section" id="handovers" aria-labelledby="hg-title">
+  <div class="container">
+    <p class="eyebrow reveal">Handovers</p>
+    <h2 id="hg-title" class="reveal">{{ c.about.gallery.heading }}</h2>
+    <p class="lead">{{ c.about.gallery.intro }}</p>
+    {%- set g = c.about.gallery %}{% set pages = (g["items"] | batch(g.per_page)) | list %}
+    <div class="hg" data-hg>
+      {%- for pg in pages %}{% set pn = loop.index %}
+      <ol class="hg__page" id="hg-page-{{ pn }}" data-hg-page="{{ pn }}" aria-label="Posters, page {{ pn }} of {{ pages | length }}" start="{{ (pn - 1) * g.per_page + 1 }}">
+        {%- for it in pg %}
+        <li class="hg__item"><a class="hg__link" href="img/handover/{{ it.file }}-1080.webp" data-hg-open><img src="img/handover/{{ it.file }}-540.webp" srcset="img/handover/{{ it.file }}-540.webp 540w, img/handover/{{ it.file }}-1080.webp 1080w" sizes="(min-width: 1100px) 520px, 46vw" width="540" height="540" loading="lazy" decoding="async" alt="Unit released poster, customer handover: {{ it.model }}"><span class="visually-hidden"> (open larger)</span></a></li>
+        {%- endfor %}
+      </ol>
+      {%- endfor %}
+      <nav class="hg__pager" aria-label="Poster pages" data-hg-pager hidden>
+        {%- for pg in pages %}
+        <button type="button" class="hg__btn" data-hg-go="{{ loop.index }}" aria-controls="hg-page-{{ loop.index }}"{% if loop.first %} aria-current="page"{% endif %}><span class="visually-hidden">Page </span>{{ loop.index }}</button>
+        {%- endfor %}
+      </nav>
+      <p class="visually-hidden" aria-live="polite" data-hg-status></p>
+    </div>
+    <dialog class="hg-box" aria-label="Poster viewer" data-hg-box>
+      <img class="hg-box__img" src="" alt="" width="1080" height="1080" data-hg-img>
+      <div class="hg-box__bar"><button type="button" class="hg__btn" data-hg-prev>Previous</button><span data-hg-count></span><button type="button" class="hg__btn" data-hg-next>Next</button><button type="button" class="hg__btn hg-box__close" data-hg-close>Close</button></div>
+    </dialog>
+  </div>
+</section>
 <section class="section section--panel" id="reviews" aria-labelledby="rev-title">
   <div class="container">
     <p class="eyebrow reveal">Reviews</p>

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="{{ page_href.home }}"><picture><source type="image/webp" srcset="{{ files.logo_webp.src }} 96w, {{ files.logo_192_webp.src }} 192w" sizes="72px"><img class="brand__logo" src="{{ files.logo.src }}" srcset="{{ files.logo.src }} 96w, {{ files.logo_192.src }} 192w" sizes="72px" alt="{{ b.name }}, home" width="72" height="72" loading="lazy" decoding="async"></picture><span class="brand__name" aria-hidden="true"><b>Oks Cars</b><small>Auto Financing</small></span></a>
+        <a class="brand" href="{{ page_href.home }}"><picture><source type="image/webp" srcset="{{ files.logo_wide_108_webp.src }} 1x, {{ files.logo_wide_216_webp.src }} 2x"><img class="brand__logo" src="{{ files.logo_wide_108.src }}" srcset="{{ files.logo_wide_108.src }} 1x, {{ files.logo_wide_216.src }} 2x" alt="{{ b.name }}, home" width="108" height="72" loading="lazy" decoding="async"></picture></a>
         <p class="tagline">Where approval stories are made.</p>
         {{ socials_row() }}
       </div>
@@ -24,9 +24,9 @@
         </ul>
       </div>
     </div>
-    <aside class="demo-features" aria-label="Business package features shown on this demo">
+    <section class="demo-features" aria-label="Business package features shown on this demo">
       <p><strong>Demo only · Business package features on this site:</strong>{%- for f in c.package.features %} <span>{{ f.n }}. {{ f.text }}{% if not loop.last %};{% else %}.{% endif %}</span>{% endfor %}</p>
-    </aside>
+    </section>
     <div class="footer-bottom"><p class="footer-legal">{{ c.meta.copyright_line }}</p></div>
   </div>
 </footer>

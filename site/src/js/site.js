@@ -229,8 +229,8 @@
   var fwrap = document.querySelector("[data-filters]");
   if (fwrap) {
     var state = { condition: "all", body: "all" };
-    var cards = document.querySelectorAll(".listing");
     var countOut = document.querySelector("[data-filter-count]"), empty = document.querySelector("[data-filter-empty]");
+    document.addEventListener("okscars:listings", function () { state.condition = "all"; state.body = "all"; });
     fwrap.addEventListener("click", function (e) {
       var btn = e.target.closest(".chip");
       if (!btn) return;
@@ -238,7 +238,7 @@
       state[key] = btn.getAttribute("data-value");
       fwrap.querySelectorAll('.chip[data-filter="' + key + '"]').forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
       var n = 0;
-      cards.forEach(function (card) {
+      document.querySelectorAll("[data-listings] .listing").forEach(function (card) {   // live query: cars.js may re-render
         var ok = (state.condition === "all" || card.getAttribute("data-condition") === state.condition) &&
                  (state.body === "all" || card.getAttribute("data-body") === state.body);
         card.hidden = !ok;
@@ -354,4 +354,27 @@
     show(0);
   });
   }
+})();
+
+/* About: poster gallery pagination + lightbox (without JS every poster shows and links open the large image) */
+(function () {
+  var g = document.querySelector("[data-hg]"); if (!g) return;
+  var pages = [].slice.call(g.querySelectorAll("[data-hg-page]")), pager = g.querySelector("[data-hg-pager]"), status = g.querySelector("[data-hg-status]");
+  var btns = [].slice.call(g.querySelectorAll("[data-hg-go]"));
+  function show(n, announce) {
+    pages.forEach(function (p) { p.hidden = p.getAttribute("data-hg-page") !== String(n); });
+    btns.forEach(function (b) { if (b.getAttribute("data-hg-go") === String(n)) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+    if (announce) { status.textContent = "Page " + n + " of " + pages.length; document.getElementById("hg-title").scrollIntoView({ block: "start" }); }
+  }
+  if (pages.length > 1) { g.classList.add("is-paged"); pager.hidden = false; show(1, false); btns.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute("data-hg-go"), true); }); }); }
+  var box = document.querySelector("[data-hg-box]"); if (!box || typeof box.showModal !== "function") return;
+  var links = [].slice.call(g.querySelectorAll("[data-hg-open]")), img = box.querySelector("[data-hg-img]"), count = box.querySelector("[data-hg-count]"), cur = 0, opener = null;
+  function view(i) { cur = (i + links.length) % links.length; var t = links[cur].querySelector("img"); img.src = links[cur].href; img.alt = t.alt; count.textContent = (cur + 1) + " / " + links.length; }
+  links.forEach(function (a, i) { a.addEventListener("click", function (e) { e.preventDefault(); opener = a; view(i); box.showModal(); box.querySelector("[data-hg-close]").focus(); }); });
+  box.querySelector("[data-hg-prev]").addEventListener("click", function () { view(cur - 1); });
+  box.querySelector("[data-hg-next]").addEventListener("click", function () { view(cur + 1); });
+  box.querySelector("[data-hg-close]").addEventListener("click", function () { box.close(); });
+  box.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") view(cur - 1); if (e.key === "ArrowRight") view(cur + 1); });
+  box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+  box.addEventListener("close", function () { var p = opener && opener.closest("[data-hg-page]"); if (p && p.hidden) show(p.getAttribute("data-hg-page"), false); if (opener) opener.focus(); });
 })();
